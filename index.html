@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The 2026 Nobel Prize in Physiology or Medicine: switching neurons on and off with light</title>
+<style>
+:root{
+  --bg:#070b10; --bg2:#0c131b; --panel:#101a24; --line:#1e2c3a; --line2:#2a3d50;
+  --ink:#e6edf3; --ink2:#a9b8c6; --ink3:#6f8293;
+  --ice:#9fd8ff; --cher:#4aa8ff; --uv:#7c6cff; --amber:#ffb547; --red:#ff6b5e; --green:#5fd39a;
+  --serif:"Iowan Old Style","Charter","Source Serif Pro",Georgia,serif;
+  --sans:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+  --mono:"JetBrains Mono","SFMono-Regular",Consolas,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font:17px/1.62 var(--serif);min-height:100vh;
+  background:radial-gradient(1200px 500px at 85% -10%,#0f2233 0%,transparent 60%),var(--bg)}
+a{color:var(--ice);text-decoration-color:#9fd8ff55;text-underline-offset:3px}
+a:hover{text-decoration-color:var(--ice)}
+header.mast{border-bottom:1px solid var(--line);padding:22px 32px 0;position:sticky;top:0;z-index:20;
+  background:linear-gradient(#070b10f2,#070b10e8);backdrop-filter:blur(6px)}
+.mast .kicker{font:600 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
+.mast h1{font:600 26px/1.15 var(--sans);letter-spacing:-.01em;margin:8px 0 4px}
+.mast .sub{font:14px var(--sans);color:var(--ink2);margin:0 0 14px}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs button{all:unset;cursor:pointer;font:500 13px/1 var(--sans);color:var(--ink3);padding:11px 14px 12px;
+  border-bottom:2px solid transparent;white-space:nowrap}
+nav.tabs button .n{font:11px var(--mono);color:var(--ink3);margin-right:6px}
+nav.tabs button:hover{color:var(--ink)}
+nav.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--cher)}
+nav.tabs button[aria-selected=true] .n{color:var(--cher)}
+nav.tabs button:focus-visible{outline:2px solid var(--cher);outline-offset:-2px}
+main{max-width:1060px;margin:0 auto;padding:30px 32px 60px}
+section.tab{display:none}
+section.tab.on{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+h2{font:600 30px/1.2 var(--sans);letter-spacing:-.015em;margin:0 0 16px}
+h3{font:600 17px/1.3 var(--sans);margin:26px 0 8px;color:var(--ink)}
+p{margin:0 0 14px;max-width:72ch}
+.take{border:1px solid #2b4a66;background:linear-gradient(90deg,#0f2436,#0c1822 70%);border-radius:10px;
+  padding:14px 18px;margin:0 0 22px;font:500 16px/1.5 var(--sans);max-width:none}
+.take b{font:600 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cher);display:block;margin-bottom:4px}
+.term{font-weight:700;color:var(--ink);border-bottom:1px dotted var(--ice);cursor:help}
+.def{color:var(--ink2)}
+.tag{display:inline-block;font:600 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  padding:4px 7px 3px;border-radius:999px;vertical-align:2px;margin:0 2px;border:1px solid}
+.tag.est{color:var(--green);border-color:#5fd39a66;background:#5fd39a14}
+.tag.evi{color:var(--amber);border-color:#ffb54766;background:#ffb54714}
+.tag.open{color:#c9a3ff;border-color:#c9a3ff66;background:#c9a3ff14}
+.tag.out{color:var(--red);border-color:#ff6b5e66;background:#ff6b5e14}
+.est-n{font:12px var(--mono);color:var(--ink3);white-space:nowrap}
+cite{font:12px var(--mono);font-style:normal;color:#7d92a5}
+cite a{color:#7d92a5}
+.eq{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:6px 0 18px;
+  overflow-x:auto;font-size:19px;text-align:center}
+.eq .note{display:block;font:12px var(--mono);color:var(--ink3);margin-top:8px;text-align:center}
+math{font-family:"STIX Two Math","Latin Modern Math","Cambria Math","DejaVu Serif","Noto Serif",serif}
+figure{margin:18px 0 26px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:16px 16px 12px}
+figure svg,figure canvas{display:block;width:100%;height:auto}
+figcaption{font:13px/1.5 var(--sans);color:var(--ink2);margin-top:10px}
+figcaption .fn{font:600 11px var(--mono);color:var(--cher);letter-spacing:.1em;margin-right:8px}
+figcaption .sch{font:11px var(--mono);color:var(--ink3);border:1px solid var(--line2);border-radius:4px;padding:1px 5px;margin-left:6px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}main{padding:22px 18px}header.mast{padding:16px 18px 0}}
+ul{padding-left:20px;margin:0 0 14px;max-width:72ch}
+li{margin:4px 0}
+table.cmp{border-collapse:collapse;width:100%;font:14px/1.45 var(--sans);margin:8px 0 18px}
+table.cmp th,table.cmp td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+table.cmp thead th{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+table.cmp td:first-child{color:var(--ink3);width:22%}
+table.cmp b{color:var(--ice)}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:14px 0}
+@media(max-width:820px){.cards{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font:14.5px/1.55 var(--sans);transition:border-color .2s,box-shadow .2s}
+.card h4{font:600 15px var(--sans);margin:0 0 6px}
+.card.hl{border-color:var(--cher);box-shadow:0 0 0 1px var(--cher),0 0 24px #4aa8ff33}
+.quote{border-left:3px solid var(--amber);padding:4px 0 4px 16px;margin:14px 0;font-style:italic;color:var(--ink2);max-width:72ch}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:820px){.cols{grid-template-columns:1fr}}
+.col{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font:14px/1.5 var(--sans)}
+.col h4{margin:0 0 8px;font:600 12px var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.col.e h4{color:var(--green)} .col.v h4{color:var(--amber)} .col.o h4{color:#c9a3ff}
+.col ul{padding-left:18px;margin:0}
+footer.tabfoot{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font:12.5px var(--sans);color:var(--ink3);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+footer.tabfoot button{all:unset;cursor:pointer;color:var(--ice);font:12.5px var(--sans)}
+footer.tabfoot button:hover{text-decoration:underline}
+.toggle{display:inline-flex;align-items:center;gap:8px;font:13px var(--sans);color:var(--ink2);cursor:pointer;user-select:none;margin:0 0 8px}
+.toggle input{accent-color:var(--cher)}
+ol.src{font:14px/1.55 var(--sans);padding-left:0;list-style:none;max-width:none}
+ol.src li{padding:6px 0;border-bottom:1px solid var(--line)}
+ol.src .k{font:600 12px var(--mono);color:var(--cher);display:inline-block;min-width:96px}
+.verify{font:11px var(--mono);color:var(--amber)}
+svg text{font-family:var(--sans)}
+svg .mono{font-family:var(--mono)}
+.tip{position:fixed;z-index:50;max-width:280px;background:#132232;border:1px solid var(--line2);border-radius:8px;padding:8px 10px;
+  font:13px/1.45 var(--sans);color:var(--ink);pointer-events:none;opacity:0;transition:opacity .12s}
+mi{text-transform:none;font-style:italic}
+@media(max-width:560px){figure{overflow-x:auto}figure svg{min-width:640px}figure canvas{min-width:640px}.grid2>*,.cards>*,.cols>*{min-width:0}
+.eq{text-align:left;background-image:linear-gradient(to left,rgba(74,168,255,.18),transparent 28px);background-attachment:local,scroll}
+.eq::after{content:"scroll →";display:block;font:11px var(--mono);color:var(--ink3);margin-top:6px}}
+
+:root{--blue:#4aa8ff;--chr:#ff6b5e;--yel:#ffd34d}
+.ctrl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font:13px var(--sans);color:var(--ink2);margin:0 0 10px}
+.ctrl input[type=range]{width:220px;height:28px;accent-color:var(--cher)}
+.ctrl button,.btn{all:unset;cursor:pointer;min-height:28px;line-height:28px;padding:0 12px;border:1px solid var(--line2);border-radius:6px;font:13px var(--sans);color:var(--ink);background:var(--panel)}
+.ctrl button:hover,.btn:hover{border-color:var(--cher)}
+.ctrl button[aria-pressed=true]{border-color:var(--cher);background:#4aa8ff22}
+table.cmp td.y{color:var(--green);font-weight:700;text-align:center} table.cmp td.n{color:var(--red);font-weight:700;text-align:center}
+table.cmp tr.win td{background:#5fd39a10} table.cmp tr[title]{cursor:help}
+.tblwrap{overflow-x:auto}
+.approx{font:11.5px var(--mono);color:var(--amber)}
+svg .hit{cursor:pointer} svg .hit:hover .path,svg .hit.on .path{stroke-opacity:1;stroke-width:6}
+svg .lab{paint-order:stroke;stroke:#0c131b;stroke-width:4px;stroke-linejoin:round}
+.credit{background:var(--panel);border:1px dashed var(--line2);border-radius:10px;padding:12px 16px;font:14px/1.55 var(--sans);color:var(--ink2);margin:18px 0}
+section.tab{scroll-margin-top:240px}
+ol.src .k{min-width:150px}
+@media(max-width:560px){ol.src .k{display:block}#score{min-width:600px}}
+ol.steps{max-width:72ch;padding-left:22px} ol.steps li{margin:8px 0}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="kicker">Nobel Prize in Physiology or Medicine · 2026 · Explainer</div>
+  <h1>The 2026 Nobel Prize in Physiology or Medicine: switching neurons on and off with light</h1>
+  <p class="sub">Karl Deisseroth, Peter Hegemann, Georg Nagel · 5 Oct 2026</p>
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button role="tab" data-t="t1"><span class="n">01</span>The prize</button>
+    <button role="tab" data-t="t2"><span class="n">02</span>Minimum neuroscience</button>
+    <button role="tab" data-t="t3"><span class="n">03</span>The problem: earlier attempts</button>
+    <button role="tab" data-t="t4"><span class="n">04</span>Alga to channel</button>
+    <button role="tab" data-t="t5"><span class="n">05</span>Neurons obey light</button>
+    <button role="tab" data-t="t6"><span class="n">06</span>The toolbox</button>
+    <button role="tab" data-t="t7"><span class="n">07</span>What it revealed</button>
+    <button role="tab" data-t="t8"><span class="n">08</span>Clinic, open questions &amp; sources</button>
+  </nav>
+</header>
+<main>
+<!-- ============ TAB 1 ============ -->
+<section class="tab" id="t1" role="tabpanel">
+<h2>The prize</h2>
+<p class="take"><b>Takeaway</b>An alga's light sensor turned out to be a light-switched pore, and putting it into neurons let scientists turn chosen brain cells on and off with millisecond timing.</p>
+<p>The Nobel Assembly at Karolinska Institutet split the prize equally among three laureates “for their discoveries concerning light-gated ion channels and optogenetics” <cite><a href="#src-PR">[PR]</a></cite>. <span class="tag est">Established</span></p>
+<ul>
+<li><b>Karl Deisseroth</b> (HHMI and Stanford, born 1971)</li>
+<li><b>Peter Hegemann</b> (Humboldt University of Berlin, born 1954)</li>
+<li><b>Georg Nagel</b> (University of Würzburg, born 1953)</li>
+</ul>
+<p>In the press release's framing, Hegemann and Nagel discovered <b><span class="term" data-def="A light-sensing protein from algae that is itself an ion channel.">channelrhodopsin</span></b> (a light-sensing protein from algae that is itself an ion channel), and Deisseroth turned it into a light-controlled switch for neurons: first in cultured neurons in 2005, then in living mice in 2007 <cite><a href="#src-PR">[PR]</a></cite>. The prize is 12 million SEK, shared equally <cite><a href="#src-PR">[PR]</a></cite>.</p>
+<div class="quote">“Optogenetics provides opportunities for mapping the brain in a way that we could once only dream of.” Per Svenningsson, committee chair <cite><a href="#src-PR">[PR]</a></cite></div>
+<figure>
+<svg viewBox="0 0 1000 270" role="img" aria-label="Timeline from 1971 bacteriorhodopsin to the first patient in 2021">
+<line x1="40" y1="130" x2="960" y2="130" stroke="#2a3d50" stroke-width="3"/>
+<g id="tl"></g>
+<g font-size="12" fill="#a9b8c6">
+<circle cx="250" cy="250" r="6" fill="#ffb547"/><text x="262" y="254">Hegemann / Nagel</text>
+<circle cx="420" cy="250" r="6" fill="#5fd39a"/><text x="432" y="254">joint 2005 paper</text>
+<circle cx="580" cy="250" r="6" fill="#4aa8ff"/><text x="592" y="254">Deisseroth</text>
+<circle cx="710" cy="250" r="6" fill="#6f8293"/><text x="722" y="254">other work</text>
+</g>
+</svg>
+<figcaption><span class="fn">FIG 1</span>Milestones from the committee's background, evenly spaced (not to scale in time). Colour shows the laureate lab where [SB] attributes the step. <cite><a href="#src-SB">[SB]</a></cite><span class="sch">Schematic</span></figcaption>
+</figure>
+</section>
+
+<!-- ============ TAB 2 ============ -->
+<section class="tab" id="t2" role="tabpanel">
+<h2>The minimum neuroscience</h2>
+<p class="take"><b>Takeaway</b>Neurons compute with millisecond voltage spikes, so a useful control tool has to be that fast and has to hit only one cell type.</p>
+<p>A <span class="term" data-def="A cell that signals electrically.">neuron</span> is a cell that signals electrically. Its interior is held negative relative to the outside; this is the <span class="term" data-def="The steady negative voltage of a neuron&#x27;s interior relative to the outside.">resting potential</span>, typically around −70 mV <span class="approx">(textbook approximation, not from [SB])</span>. Pushing the membrane less negative is <span class="term" data-def="Making the membrane voltage less negative; pushes the cell toward firing.">depolarization</span>. Past a threshold it fires an <span class="term" data-def="An all-or-none voltage pulse, about a millisecond long; also called a spike.">action potential</span> (a <b>spike</b>), an all-or-none pulse about a millisecond long <span class="approx">(textbook approximation, not from [SB])</span>. Pushing it more negative is <span class="term" data-def="Making the membrane voltage more negative; suppresses spikes.">hyperpolarization</span>, which suppresses spikes. [SB] stresses that the brain computes “on the millisecond timescale” <cite><a href="#src-SB">[SB]</a></cite>.</p>
+<p>Ions cross the membrane in two ways <cite><a href="#src-SB">[SB pp. 6, 8]</a></cite>:</p>
+<ul>
+<li>An <span class="term" data-def="A gated pore in the membrane; when open, ions flow passively down their gradient.">ion channel</span> is a gated pore. When open, ions flow passively <em>down</em> their gradient, many per opening, and fast.</li>
+<li>A <span class="term" data-def="A protein that actively moves ions against their gradient; light-driven pumps move one ion per photon.">pump</span> actively pushes ions <em>against</em> their gradient. Light-driven pumps move <b>one ion per photon</b>, so their currents are smaller.</li>
+</ul>
+<p>This difference explains why channelrhodopsin, a light-gated channel (tab 4), mattered so much.</p>
+<figure>
+<svg viewBox="0 0 1000 300" role="img" aria-label="Schematic voltage trace of a spike">
+<line x1="90" y1="270" x2="960" y2="270" stroke="#6f8293"/><line x1="90" y1="270" x2="90" y2="20" stroke="#6f8293"/>
+<text x="60" y="150" font-size="13" fill="#a9b8c6" transform="rotate(-90 60 150)" text-anchor="middle">voltage</text>
+<text x="525" y="292" font-size="13" fill="#a9b8c6" text-anchor="middle">time (spike ≈ 1 ms, textbook approximation, not from [SB])</text>
+<line x1="90" y1="170" x2="960" y2="170" stroke="#ffb547" stroke-dasharray="5 5" stroke-opacity=".7"/>
+<text x="950" y="162" font-size="12" fill="#ffc979" text-anchor="end">threshold</text>
+<path d="M100 220 L330 220 C360 220 380 200 410 172 L440 172 C455 120 470 40 485 38 C500 36 515 160 535 245 C550 262 580 232 620 222 L950 220" fill="none" stroke="#9fd8ff" stroke-width="3"/>
+<text x="200" y="244" font-size="12" fill="#a9b8c6" text-anchor="middle">rest ≈ −70 mV (textbook)</text>
+<text x="350" y="194" font-size="12" fill="#a9b8c6" text-anchor="end">depolarizing push</text>
+<text x="505" y="30" font-size="13" fill="#e6edf3" font-weight="600" text-anchor="start">spike</text>
+<text x="560" y="262" font-size="12" fill="#a9b8c6">return</text>
+</svg>
+<figcaption><span class="fn">FIG 2a</span>An action potential. A push past threshold triggers an all-or-none spike, then the voltage returns to rest. The only values shown are textbook approximations, not from [SB].<span class="sch">Schematic</span></figcaption>
+</figure>
+<figure>
+<svg viewBox="0 0 1000 320" role="img" aria-label="Channel versus pump">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5fd39a"/></marker>
+<marker id="ah2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ffb547"/></marker></defs>
+<g id="chpump"></g>
+</svg>
+<figcaption><span class="fn">FIG 2b</span>Channel versus pump. A channel lets many ions run downhill through an open pore; a light-driven pump carries one ion uphill per photon <cite><a href="#src-SB">[SB pp. 6, 8]</a></cite>.<span class="sch">Schematic</span></figcaption>
+</figure>
+<p>A <span class="term" data-def="A protein that crosses the membrane seven times and holds retinal.">rhodopsin</span> is a protein that crosses the membrane seven times and holds <span class="term" data-def="A light-absorbing molecule related to vitamin A.">retinal</span>, a light-absorbing molecule related to vitamin A. Light changes retinal's shape, and that changes the protein. In <b>microbial rhodopsins</b>, the protein moves ions directly. Animal vision instead relays the signal through a slower chain of enzymes <cite><a href="#src-SB">[SB]</a></cite>.</p>
+<p><b>Genetic targeting:</b> a virus delivers the gene with a <span class="term" data-def="A DNA switch that only one cell type reads.">promoter</span>, a DNA switch that only one cell type reads. Only those cells make the protein. The method in one line: <b>the protein picks <em>which</em> cells; the light picks <em>where</em> and <em>when</em>.</b></p>
+<p>Francis Crick had asked for exactly this. He wanted a way to switch “all neurons of just one type” while “leaving the others more or less unaltered”, and he wrote that “the ideal signal would be light”, an idea he called “rather far-fetched” <cite><a href="#src-SB">[SB]</a></cite> <cite><a href="#src-Crick1999">[Crick 1999]</a></cite>.</p>
+</section>
+<!-- ============ TAB 3 ============ -->
+<section class="tab" id="t3" role="tabpanel">
+<h2>The problem: earlier attempts</h2>
+<p class="take"><b>Takeaway</b>Every earlier light-control trick failed at least one requirement: genetically targetable, one component, fast, and needing no added chemical.</p>
+<p>The criteria [SB] set for an ideal tool <cite><a href="#src-SB">[SB]</a></cite>:</p>
+<ul><li>genetically encodable and compact</li><li>expresses well in the membrane</li><li>fast and reversible</li><li>turns photons <em>directly</em> into current</li></ul>
+<figure>
+<div class="tblwrap">
+<table class="cmp" id="score">
+<thead><tr><th>Approach</th><th>Targetable</th><th>Single protein</th><th>Fast</th><th>No added chemical</th></tr></thead>
+<tbody>
+<tr title="Limitation: not targetable"><td>1971 · Fork: lasers on <i>Aplysia</i> neurons, using their weak intrinsic light sensitivity</td><td class="n">✕</td><td>—</td><td class="y">✓</td><td class="y">✓</td></tr>
+<tr title="Limitation: phototoxicity"><td>1983 · Farber &amp; Grinvald: dye-stained leech neurons</td><td class="n">✕</td><td>—</td><td class="y">✓</td><td class="n">✕</td></tr>
+<tr title="Limitation: multi-component, slow, needs added retinal"><td>2002 · Miesenböck's chARGe: three <i>Drosophila</i> genes (arrestin-2, rhodopsin, Gαq) <cite><a href="#src-Zemelman2002">[Zemelman 2002]</a></cite></td><td class="y">✓</td><td class="n">✕</td><td class="n">✕</td><td class="n">✕</td></tr>
+<tr title="Limitation: needs a chemical, limited by diffusion"><td>2005 · Lima &amp; Miesenböck: P2X2 receptor plus caged ATP</td><td class="y">✓</td><td class="y">✓</td><td class="n">✕</td><td class="n">✕</td></tr>
+<tr title="Limitation: needs a synthetic compound delivered into tissue"><td>2004 onward · Isacoff, Kramer, Trauner: photoswitchable tethered ligands <cite><a href="#src-Banghart2004">[Banghart 2004]</a></cite></td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="n">✕</td></tr>
+<tr class="win" title="One protein, delivered genetically, turns light directly into current"><td><b>2005 · ChR2 in neurons</b> <cite><a href="#src-Boyden2005">[Boyden 2005]</a></cite></td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+</tbody></table></div>
+<figcaption><span class="fn">FIG 3</span>Scorecard. Hover a row to see the limitation in [SB]'s terms. The ✓/✕ marks condense [SB]'s stated limitations; “—” means no protein was introduced, so the column does not apply <cite><a href="#src-SB">[SB]</a></cite>.<span class="sch">Schematic</span></figcaption>
+</figure>
+<p>[SB]'s conclusion: the answer had to be “a single protein… delivered genetically… coupl[ing] photon absorption directly to ionic current with millisecond kinetics” <cite><a href="#src-SB">[SB]</a></cite>.</p>
+</section>
+
+<!-- ============ TAB 4 ============ -->
+<section class="tab" id="t4" role="tabpanel">
+<h2>The discovery: from alga to channel</h2>
+<p class="take"><b>Takeaway</b>A photocurrent too fast for an enzyme chain suggested that receptor and pore were one protein, and putting the gene into frog eggs proved it.</p>
+<ol class="steps">
+<li><b>The alga.</b> <i>Chlamydomonas reinhardtii</i> is a single-celled green alga that swims toward light using an <span class="term" data-def="A light-sensing patch on the alga.">eyespot</span>, a light-sensing patch <cite><a href="#src-SB">[SB]</a></cite>.</li>
+<li><b>The clue (1991).</b> Harz and Hegemann recorded currents from swimming cells with a suction pipette. The current started <b>microseconds</b> after a flash of light. That is too fast for a chain of messenger molecules, so Hegemann's team proposed that <b>the light receptor and the ion channel are a single protein</b> <cite><a href="#src-Harz1991">[Harz &amp; Hegemann 1991]</a></cite> <cite><a href="#src-SB">[SB]</a></cite>. <span class="tag est">Established</span></li>
+<li><b>The genes.</b> Three groups (Hegemann, Spudich, Takahashi) independently found algal genes resembling <span class="term" data-def="A light-driven proton pump found in 1971 in a salt-loving microbe (Halobacterium).">bacteriorhodopsin</span>. Bacteriorhodopsin is a light-driven proton pump found in 1971 in a salt-loving microbe <cite><a href="#src-Oesterhelt1971">[Oesterhelt &amp; Stoeckenius 1971]</a></cite>, and Hegemann trained in the lab that studied it. He named the genes Chop1 and Chop2. Spudich's group showed that they drive the photocurrents <cite><a href="#src-Sineshchekov2002">[Sineshchekov 2002]</a></cite>, and Takahashi's group located them in the eyespot <cite><a href="#src-SB">[SB]</a></cite>. [SB] credits all three groups for this step.</li>
+<li><b>ChR1 (2002).</b> Nagel, Hegemann and Bamberg expressed the gene in <span class="term" data-def="Large frog egg cells used as test tubes for membrane proteins."><i>Xenopus</i> oocytes</span>, large frog egg cells used as test tubes for membrane proteins. <span class="term" data-def="A method that holds the cell&#x27;s voltage fixed and measures the current that flows.">Voltage clamp</span> holds the cell's voltage fixed and measures the current. <b>Green</b> light drove an inward <b>proton</b> current. A shortened core of the protein was enough, so the protein <em>is</em> the channel. This was the first light-gated ion channel <cite><a href="#src-Nagel2002">[Nagel 2002]</a></cite> <cite><a href="#src-SB">[SB]</a></cite>. <span class="tag est">Established</span></li>
+<li><b>ChR2 (2003).</b> It responds to <b>bluer</b> light and passes <span class="term" data-def="Positive ions, not only protons.">cations</span> in general, meaning positive ions, not only protons. The first 315 amino acids suffice. Under steady light the current spikes to a <b>peak</b>, then settles to a <b>plateau</b> <cite><a href="#src-Nagel2003">[Nagel 2003]</a></cite> <cite><a href="#src-SB">[SB]</a></cite>. [SB] calls this “arguably more consequential”, because letting positive ions in depolarizes a neuron. <span class="tag est">Established</span></li>
+</ol>
+<div class="grid2">
+<figure>
+<svg viewBox="0 0 480 300" role="img" aria-label="Chlamydomonas cell with flagella and eyespot">
+<defs><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9fd8ff"/></marker>
+<marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5fd39a"/></marker></defs>
+<path d="M200 120 C150 80 120 60 70 70" stroke="#a9b8c6" stroke-width="2.5" fill="none"/>
+<path d="M200 120 C160 150 120 170 70 160" stroke="#a9b8c6" stroke-width="2.5" fill="none"/>
+<ellipse cx="270" cy="150" rx="78" ry="62" fill="#1f4a33" stroke="#5fd39a" stroke-width="2"/>
+<ellipse cx="290" cy="160" rx="34" ry="26" fill="#2c6b48"/>
+<circle cx="232" cy="104" r="9" fill="#ff6b5e"/>
+<text x="232" y="78" font-size="13" fill="#ff8f85" text-anchor="middle" class="lab">eyespot</text>
+<text x="95" y="52" font-size="12" fill="#a9b8c6" text-anchor="middle">two flagella</text>
+<text x="270" y="240" font-size="13" fill="#e6edf3" text-anchor="middle"><tspan font-style="italic">Chlamydomonas</tspan> cell</text>
+<line x1="20" y1="270" x2="150" y2="270" stroke="#5fd39a" stroke-width="2.5" marker-end="url(#ag)"/>
+<text x="20" y="292" font-size="12" fill="#5fd39a">swims toward light</text>
+<g><circle cx="430" cy="40" r="14" fill="#ffd34d"/><text x="430" y="72" font-size="12" fill="#ffd34d" text-anchor="middle">light</text>
+<line x1="410" y1="52" x2="250" y2="98" stroke="#9fd8ff" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ab)"/></g>
+</svg>
+<figcaption><span class="fn">FIG 4a</span>The alga senses light at its eyespot and steers its two flagella toward it <cite><a href="#src-SB">[SB]</a></cite>.<span class="sch">Schematic</span></figcaption>
+</figure>
+<figure>
+<svg viewBox="0 0 480 300" role="img" aria-label="Oocyte voltage clamp and photocurrent with peak and plateau">
+<circle cx="100" cy="170" r="70" fill="#3a2c1c" stroke="#ffb547" stroke-width="2"/>
+<path d="M30 170 A70 70 0 0 1 170 170" fill="#5a4123"/>
+<line x1="70" y1="40" x2="85" y2="130" stroke="#a9b8c6" stroke-width="2"/><line x1="140" y1="40" x2="118" y2="130" stroke="#a9b8c6" stroke-width="2"/>
+<text x="105" y="28" font-size="12" fill="#a9b8c6" text-anchor="middle">two electrodes</text>
+<text x="100" y="268" font-size="13" fill="#e6edf3" text-anchor="middle">oocyte · voltage clamp</text>
+<rect x="250" y="40" width="150" height="16" fill="#4aa8ff" fill-opacity=".8"/>
+<text x="325" y="32" font-size="12" fill="#9fd8ff" text-anchor="middle">light on</text>
+<line x1="220" y1="90" x2="460" y2="90" stroke="#2a3d50"/>
+<path d="M220 90 L250 90 C255 90 256 230 262 230 C270 230 285 160 310 158 L400 158 C405 158 410 92 420 90 L460 90" fill="none" stroke="#ffb547" stroke-width="3"/>
+<text x="272" y="252" font-size="12" fill="#ffc979">peak</text>
+<text x="350" y="180" font-size="12" fill="#ffc979" text-anchor="middle">plateau</text>
+<text x="340" y="282" font-size="12" fill="#a9b8c6" text-anchor="middle">inward current (down) vs time · no values</text>
+</svg>
+<figcaption><span class="fn">FIG 4b</span>ChR2 photocurrent, peak then plateau (schematic) <cite><a href="#src-Nagel2003">[Nagel 2003]</a></cite>.<span class="sch">Schematic</span></figcaption>
+</figure>
+</div>
+<figure>
+<svg viewBox="0 0 1000 330" role="img" aria-label="ChR2 with seven helices and retinal in the membrane, with channel-pump inset">
+<g id="chr2"></g>
+</svg>
+<figcaption><span class="fn">FIG 4c</span>ChR2 in the membrane. Seven helices hold retinal; blue light opens the pore and cations flow in, depolarizing the cell <cite><a href="#src-Nagel2003">[Nagel 2003]</a></cite> <cite><a href="#src-SB">[SB]</a></cite>. Inset: the channel/pump contrast from Fig 2b.<span class="sch">Schematic</span></figcaption>
+</figure>
+</section>
+<!-- ============ TAB 5 ============ -->
+<section class="tab" id="t5" role="tabpanel">
+<h2>Making neurons obey light</h2>
+<p class="take"><b>Takeaway</b>In 2005, ChR2 put into neurons made them fire on cue, pulse for pulse, and in 2007 the same trick moved a living mouse's whiskers.</p>
+<p><b>2005 (Boyden, Zhang, Bamberg, Nagel, Deisseroth).</b> The team used a <span class="term" data-def="A gene-delivery virus.">lentivirus</span>, a gene-delivery virus, to put ChR2 into cultured hippocampal neurons from rats <cite><a href="#src-PR">[PR]</a></cite>; [SB] does not name the species. The protein sat in the membrane with no apparent toxicity. Blue light pulses drove <b>precise, millisecond-scale spikes, including trains at increasing frequencies</b> <cite><a href="#src-Boyden2005">[Boyden 2005]</a></cite> <cite><a href="#src-SB">[SB]</a></cite>. No retinal had to be added, because the trace amount already in the cells was enough. That detail made in-animal work practical. <span class="tag est">Established</span></p>
+<p>Within a year, other groups confirmed it in chick spinal cord, worms (<i>C. elegans</i>), retina, fruit flies and living tissue <cite><a href="#src-Li2005">[Li 2005]</a></cite> <cite><a href="#src-Nagel2005">[Nagel 2005]</a></cite> <cite><a href="#src-Bi2006">[Bi 2006]</a></cite> <cite><a href="#src-Zhang2006">[Zhang 2006]</a></cite> <cite><a href="#src-SB">[SB]</a></cite>.</p>
+<figure>
+<div class="ctrl" id="pulseCtl">
+<label for="rate">Pulse rate: low</label><input type="range" id="rate" min="0" max="3" step="1" value="1" aria-label="Light pulse rate, low to high"><span>high</span>
+<button id="lightBtn" aria-pressed="true">Light pulses on</button>
+<button id="ctrlBtn" aria-pressed="false">Neuron without ChR2</button>
+</div>
+<canvas id="spk" width="1000" height="360" aria-label="Light pulse train and neuron voltage response"></canvas>
+<figcaption><span class="fn">FIG 5a</span>Schematic of [SB] Fig. 3: spikes follow light pulse trains. Drag the slider to change the pulse rate (labelled only low → high); toggle the light, or switch to a neuron that lacks ChR2. No frequency limit is implied; [SB] gives none <cite><a href="#src-SB">[SB]</a></cite> <cite><a href="#src-Boyden2005">[Boyden 2005]</a></cite>.<span class="sch">Schematic</span></figcaption>
+</figure>
+<p><b>2006.</b> Deisseroth and co-authors coined the word <span class="term" data-def="Controlling genetically chosen cells with light, using light-sensitive proteins.">optogenetics</span> in a J Neurosci review <cite><a href="#src-Deisseroth2006">[Deisseroth 2006]</a></cite>; his ten-year retrospective tells the story <cite><a href="#src-Deisseroth2015">[Deisseroth 2015]</a></cite>.</p>
+<p><b>2007 (Aravanis et al.).</b> A laser diode was coupled to an <span class="term" data-def="A thin glass light guide implanted into the brain.">optical fibre</span> implanted in the brain of freely moving rodents. Light on ChR2-expressing neurons in the whisker motor cortex made the whiskers deflect <cite><a href="#src-SB">[SB]</a></cite> <cite><a href="#src-Aravanis2007">[Aravanis 2007]</a></cite>. <span class="tag est">Established</span></p>
+<figure>
+<div class="ctrl"><button id="fibreBtn" aria-pressed="false">Turn fibre light on</button></div>
+<svg viewBox="0 0 1000 340" role="img" aria-label="Mouse head with implanted optical fibre and whisker deflection">
+<path d="M180 250 C180 140 300 90 450 100 C560 108 650 150 720 215 C740 235 735 262 705 268 L260 285 C210 288 180 275 180 250Z" fill="#1b2733" stroke="#6f8293" stroke-width="2"/>
+<ellipse cx="235" cy="150" rx="32" ry="46" fill="#1b2733" stroke="#6f8293" stroke-width="2" transform="rotate(-25 235 150)"/>
+<circle cx="560" cy="170" r="9" fill="#070b10"/>
+<circle cx="722" cy="236" r="8" fill="#ff8f85"/>
+<path d="M300 150 C340 115 420 112 470 130 C440 175 360 190 300 150Z" fill="#4aa8ff" fill-opacity=".18" stroke="#4aa8ff" stroke-dasharray="4 3"/>
+<g id="chrCells" fill="#4aa8ff"><circle cx="380" cy="140" r="5"/><circle cx="405" cy="152" r="5"/><circle cx="425" cy="138" r="5"/><circle cx="360" cy="155" r="5"/><circle cx="445" cy="148" r="5"/></g>
+<rect x="398" y="30" width="10" height="100" fill="#a9b8c6"/><rect x="390" y="10" width="26" height="24" rx="3" fill="#2a3d50" stroke="#a9b8c6"/>
+<path id="beam" d="M403 130 L380 165 L426 165Z" fill="#4aa8ff" opacity="0"/>
+<text x="430" y="26" font-size="13" fill="#e6edf3">optical fibre + laser diode</text>
+<text x="230" y="80" font-size="12" fill="#9fd8ff" text-anchor="end" class="lab">ChR2 cells, whisker motor cortex</text>
+<line x1="235" y1="76" x2="350" y2="140" stroke="#4aa8ff" stroke-opacity=".6"/>
+<g stroke="#e6edf3" stroke-width="1.6" fill="none" id="whRest"><path d="M705 240 C770 230 830 215 890 190"/><path d="M705 245 C780 245 840 240 900 236"/><path d="M705 250 C770 262 830 275 885 292"/></g>
+<g stroke="#ffb547" stroke-width="2" fill="none" id="whDef" opacity=".25" stroke-dasharray="5 4"><path d="M705 240 C760 205 800 165 830 120"/><path d="M705 245 C770 220 830 190 880 160"/><path d="M705 250 C770 245 840 232 900 215"/></g>
+<text x="905" y="250" font-size="12" fill="#a9b8c6" class="lab">rest</text>
+<text x="842" y="112" font-size="12" fill="#ffc979" class="lab">deflected</text>
+<text x="450" y="320" font-size="12" fill="#6f8293" text-anchor="middle">mouse head, side view (not to scale)</text>
+</svg>
+<figcaption><span class="fn">FIG 5b</span>Fibre in vivo. Light delivered through an implanted fibre to ChR2-expressing neurons in whisker motor cortex deflects the whiskers <cite><a href="#src-Aravanis2007">[Aravanis 2007]</a></cite> <cite><a href="#src-SB">[SB]</a></cite>.<span class="sch">Schematic</span></figcaption>
+</figure>
+</section>
+
+<!-- ============ TAB 6 ============ -->
+<section class="tab" id="t6" role="tabpanel">
+<h2>The toolbox</h2>
+<p class="take"><b>Takeaway</b>After the on-switch came off-switches and colour variants, so one experiment could excite and silence different cells with different colours.</p>
+<ul>
+<li><b>Silencing (2007).</b> <span class="term" data-def="A yellow-light chloride pump (halorhodopsin) from the microbe Natronomonas pharaonis.">NpHR</span> is a <b>yellow</b>-light chloride pump from a salt-loving microbe. It pushes negative ions in, which hyperpolarizes the neuron. Because it responds to a different colour from blue ChR2, the same tissue could be driven both ways: the <b>first two-colour, bidirectional control</b> <cite><a href="#src-Zhang2007">[Zhang 2007]</a></cite> <cite><a href="#src-Han2007">[Han &amp; Boyden 2007]</a></cite> <cite><a href="#src-SB">[SB]</a></cite>. Its limit is that, as a pump, it moves only one ion per photon. <span class="tag est">Established</span></li>
+<li><b>Chloride channels.</b> ChR2 was re-engineered to pass chloride <cite><a href="#src-Berndt2014">[Berndt 2014]</a></cite> <cite><a href="#src-Wietek2014">[Wietek 2014]</a></cite>. Natural anion channels GtACR1 and GtACR2 came from the alga <i>Guillardia theta</i> <cite><a href="#src-Govorunova2015">[Govorunova 2015]</a></cite>. They have much higher light sensitivity and chloride conductance than the pumps <cite><a href="#src-SB">[SB]</a></cite>.</li>
+<li><b>Red-shifted.</b> <span class="term" data-def="A red-shifted channelrhodopsin: it responds to longer, redder light.">Chrimson</span> responds to longer, redder light and is used in primate and human retina <cite><a href="#src-SB">[SB]</a></cite>.</li>
+<li><b>Chemogenetics</b>, the complementary approach. <span class="term" data-def="Engineered receptors switched on by a drug rather than light.">DREADDs</span> are engineered receptors switched on by a drug rather than light <cite><a href="#src-Armbruster2007">[Armbruster 2007]</a></cite>. They are slower and act body-wide, which suits long-lasting modulation <cite><a href="#src-SB">[SB]</a></cite>.</li>
+</ul>
+<figure>
+<svg viewBox="0 0 1000 300" role="img" aria-label="Toolbox palette of optogenetic tools"><g id="palette"></g></svg>
+<figcaption><span class="fn">FIG 6</span>Toolbox palette, coloured by [SB]'s colour words only (no wavelengths). ↑ depolarize (excite), ↓ hyperpolarize (silence); DREADDs are drug-activated and slow. Icon shows channel (open pore), pump (one ion per photon) or drug (pill) <cite><a href="#src-SB">[SB]</a></cite>.<span class="sch">Schematic</span></figcaption>
+</figure>
+</section>
+<!-- ============ TAB 7 ============ -->
+<section class="tab" id="t7" role="tabpanel">
+<h2>What it revealed</h2>
+<p class="take"><b>Takeaway</b>For the first time, researchers could <em>write</em> activity into a defined circuit and watch the behaviour change, which proves cause instead of correlation.</p>
+<p>[SB]'s thesis is that behaviours “are assembled from discrete, projection-defined circuits”, and that neuroscience moved “from observing and ‘reading’… to actively ‘writing’” <cite><a href="#src-SB">[SB]</a></cite>. Here a <span class="term" data-def="The axon pathway from one brain region to another.">projection</span> means the axon pathway from one brain region to another. All of the findings below are <span class="tag est">Established</span> in mice.</p>
+<figure>
+<div class="ctrl" id="circBtns"></div>
+<svg viewBox="0 0 1000 480" id="brain" role="img" aria-label="Sagittal mouse brain schematic with clickable circuits">
+<path d="M140 250 C120 150 260 70 430 62 C600 56 720 90 790 150 C840 120 930 150 935 230 C940 300 900 340 860 350 L900 440 L830 450 L780 380 C700 440 560 455 420 445 C300 438 200 400 160 330 C110 330 60 300 62 255 C64 215 110 210 140 250Z" fill="#111d29" stroke="#2a3d50" stroke-width="2"/>
+<text x="90" y="200" font-size="11" fill="#6f8293" class="mono">FRONT</text>
+<text x="860" y="125" font-size="11" fill="#6f8293" class="mono">BACK</text>
+<text x="420" y="100" font-size="12" fill="#6f8293" text-anchor="middle">cortex</text>
+<text x="870" y="230" font-size="12" fill="#6f8293" text-anchor="middle">cerebellum</text>
+<g id="circs"></g>
+</svg>
+<figcaption><span class="fn">FIG 7</span>Circuit explorer. Click a pathway (or a button) to light it up and open its card. Region positions are rough and for orientation only (sagittal view, front at left). <cite><a href="#src-SB">[SB]</a></cite><span class="sch">Schematic</span></figcaption>
+</figure>
+<div class="cards">
+<div class="card" id="c-sleep"><h4>Sleep → waking</h4>Stimulating hypocretin (orexin) neurons in the lateral hypothalamus (LH) made the mouse more likely to wake from both deep and REM sleep, and how fast depended on stimulation frequency. This was one of the first direct causal links to a mammalian behaviour <cite><a href="#src-Adamantidis2007">[Adamantidis 2007]</a></cite> <cite><a href="#src-SB">[SB]</a></cite>.</div>
+<div class="card" id="c-engram"><h4>Memory engrams</h4>An <span class="term" data-def="The set of cells that stores a memory.">engram</span> is the set of cells that stores a memory. Cells in the hippocampal dentate gyrus (DG) that were active during fear learning were tagged with ChR2. Reactivating them in a neutral box made mice freeze, so these cells are <em>sufficient</em> for recall. The same method planted a <b>false memory</b>: the safe-box cells were reactivated during a shock, and the mice then feared the safe box <cite><a href="#src-Liu2012">[Liu 2012]</a></cite> <cite><a href="#src-Ramirez2013">[Ramirez 2013]</a></cite>.</div>
+<div class="card" id="c-reward"><h4>Reward vs aversion</h4>In the VTA, a dopamine hub, input from the laterodorsal tegmentum (LDT) drives <b>reward</b> and input from the lateral habenula (LHb) drives <b>aversion</b>. Dopamine is not one broadcast signal <cite><a href="#src-Lammel2012">[Lammel 2012]</a></cite>.</div>
+<div class="card" id="c-anx"><h4>Anxiety</h4>Basolateral amygdala → central amygdala (BLA → CeA) lowers anxiety, basolateral amygdala → ventral hippocampus (BLA → vHPC) raises it, and the <span class="term" data-def="Bed nucleus of the stria terminalis, a forebrain hub tied to anxiety.">BNST</span> (bed nucleus of the stria terminalis, a forebrain hub tied to anxiety) splits into risk-avoidance (→ LH) and positive-valence (→ VTA) outputs <cite><a href="#src-Tye2011">[Tye 2011]</a></cite> <cite><a href="#src-SB">[SB]</a></cite>.</div>
+<div class="card" id="c-innate"><h4>Aggression and parenting</h4><span class="term" data-def="Neurons that make oestrogen receptor alpha, the marker used to target them.">Esr1+ neurons</span> (neurons that make oestrogen receptor alpha, the marker used to target them) in the <span class="term" data-def="Ventromedial hypothalamus.">VMH</span> (ventromedial hypothalamus) give a graded continuum from social interaction to mounting to attack as intensity rises. Galanin neurons in the medial preoptic area (MPOA) split parenting into separate modules <cite><a href="#src-Lin2011">[Lin 2011]</a></cite> <cite><a href="#src-Kohl2018">[Kohl 2018]</a></cite> <cite><a href="#src-SB">[SB]</a></cite>.</div>
+<div class="card" id="c-loco"><h4>Locomotion</h4>Neurons in the <span class="term" data-def="Mesencephalic locomotor region, a midbrain area that drives movement.">MLR</span> (mesencephalic locomotor region, a midbrain area that drives movement) separate into streams for speed, body extension and forelimb use <cite><a href="#src-SB">[SB]</a></cite>.</div>
+</div>
+<figure>
+<svg viewBox="0 0 1000 300" role="img" aria-label="Engram tagging protocol in three panels"><g id="engram"></g></svg>
+<figcaption><span class="fn">FIG 7b</span>Engram protocol: (1) fear learning in box A tags the active cells; (2) light reactivates them in neutral box B and the mouse freezes; (3) false memory: box-A cells reactivated during a shock in box C, then the mouse freezes in A <cite><a href="#src-Liu2012">[Liu 2012]</a></cite> <cite><a href="#src-Ramirez2013">[Ramirez 2013]</a></cite>.<span class="sch">Schematic</span></figcaption>
+</figure>
+</section>
+
+<!-- ============ TAB 8 ============ -->
+<section class="tab" id="t8" role="tabpanel">
+<h2>The clinic, what's open, sources</h2>
+<p class="take"><b>Takeaway</b>One blind patient has partial vision back. That is a proof of concept, not yet a therapy.</p>
+<h3>Restoring vision <cite><a href="#src-SB">[SB]</a></cite></h3>
+<ul>
+<li><b>The disease.</b> In <span class="term" data-def="An inherited disease in which mutations kill the rods and cones.">retinitis pigmentosa</span>, inherited mutations kill the rods and cones, the retina's light-sensing cells. The <span class="term" data-def="Retinal cells that carry the signal to the brain; they survive in retinitis pigmentosa.">retinal ganglion cells</span>, which carry the signal to the brain, survive.</li>
+<li><b>The idea.</b> Make those surviving ganglion cells light-sensitive.</li>
+<li><b>The path to people.</b> It was tested in mice with ChR2 <cite><a href="#src-Bi2006">[Bi 2006]</a></cite>, then in marmosets, then in macaques with Chrimson <cite><a href="#src-SB">[SB]</a></cite>.</li>
+<li><b>The first patient</b> <cite><a href="#src-Sahel2021">[Sahel 2021]</a></cite>: Chrimson was delivered into the ganglion cells, and engineered goggles turned the scene into light pulses. The patient regained <b>prolonged, partial</b> vision and could tell apart high-contrast objects on a table. <span class="term" data-def="A recording of brain activity from scalp electrodes.">EEG</span>, a recording of brain activity from scalp electrodes, showed object-related activity in visual cortex. <span class="tag evi">Evidence (n = 1)</span></li>
+<li><b>Trials.</b> [SB] says “several clinical trials… are presently underway” <cite><a href="#src-SB">[SB]</a></cite>. [SB] gives no names or numbers.</li>
+</ul>
+<figure>
+<svg viewBox="0 0 1000 330" role="img" aria-label="Goggles send red-shifted light pulses to ganglion cells expressing Chrimson in a degenerated retina"><g id="retina"></g></svg>
+<figcaption><span class="fn">FIG 8a</span>Retina and goggles. A camera in the goggles converts the scene to light pulses; dead rods and cones (grey) no longer respond, but ganglion cells expressing Chrimson do, and the signal reaches visual cortex <cite><a href="#src-Sahel2021">[Sahel 2021]</a></cite> <cite><a href="#src-SB">[SB]</a></cite>.<span class="sch">Schematic</span></figcaption>
+</figure>
+<div class="cols">
+<div class="col e"><h4>Established</h4><ul><li>ChR1 and ChR2 are single-protein light-gated channels (2002, 2003).</li><li>ChR2 drives millisecond spikes in neurons (2005).</li><li>The method controls behaviour in vivo (2007).</li><li>Causal circuit-behaviour links for sleep, memory, reward, anxiety, aggression, parenting and locomotion.</li></ul></div>
+<div class="col v"><h4>Evidence</h4><ul><li>Human vision restoration rests on one patient <cite><a href="#src-Sahel2021">[Sahel 2021]</a></cite>, with trials underway <cite><a href="#src-SB">[SB]</a></cite>.</li></ul></div>
+<div class="col o"><h4>Open</h4><ul><li>Wider human therapy. The hurdles are getting light into tissue, gene-therapy safety and immune responses. <i>Our interpretation; not discussed in [SB].</i></li><li>[SB] says chemogenetics “may eventually” be usable in humans <cite><a href="#src-SB">[SB]</a></cite>.</li></ul></div>
+</div>
+<div class="credit"><b>Credit note.</b> The discovery involved more people than the three laureates. [SB] names Spudich, Takahashi, Boyden, Bamberg and Miesenböck, along with others: it credits the Spudich and Takahashi groups with parallel gene identification, and Boyden is first author of the 2005 paper <cite><a href="#src-SB">[SB]</a></cite>.</div>
+<h3 id="sources">Sources</h3>
+<ol class="src">
+<li id="src-SB"><span class="k">[SB]</span>Nobel Committee, Scientific background “Optogenetics. Discovery of a neuronal switch” (A. El Manira, P. Svenningsson, S. Linnarsson), 2026 · <a href="https://www.nobelprize.org/uploads/2026/10/advanced-medicineprize2026.pdf" target="_blank" rel="noopener">nobelprize.org PDF</a> · <a href="https://www.nobelprizemedicine.org/wp-content/uploads/2026/10/Nobel_Prize_ENG_adv.pdf" target="_blank" rel="noopener">mirror</a></li>
+<li id="src-PR"><span class="k">[PR]</span>Nobel Assembly at Karolinska Institutet, press release, 5 Oct 2026 · <a href="https://www.nobelprize.org/prizes/medicine/2026/press-release/" target="_blank" rel="noopener">nobelprize.org</a></li>
+<li id="src-Harz1991"><span class="k">[Harz1991]</span>Harz &amp; Hegemann 1991, Nature 351:489. Fast photocurrents in <i>Chlamydomonas</i> · <a href="https://doi.org/10.1038/351489a0" target="_blank" rel="noopener">doi:10.1038/351489a0</a></li>
+<li id="src-Nagel2002"><span class="k">[Nagel2002]</span>Nagel et al. 2002, Science 296:2395. ChR1 is a light-gated proton channel · <a href="https://doi.org/10.1126/science.1072068" target="_blank" rel="noopener">doi:10.1126/science.1072068</a></li>
+<li id="src-Sineshchekov2002"><span class="k">[Sineshchekov2002]</span>Sineshchekov, Jung &amp; Spudich 2002, PNAS 99:8689. CSRA and CSRB · <a href="https://doi.org/10.1073/pnas.122243399" target="_blank" rel="noopener">doi:10.1073/pnas.122243399</a></li>
+<li id="src-Nagel2003"><span class="k">[Nagel2003]</span>Nagel et al. 2003, PNAS 100:13940. ChR2 is a light-gated cation channel · <a href="https://doi.org/10.1073/pnas.1936192100" target="_blank" rel="noopener">doi:10.1073/pnas.1936192100</a></li>
+<li id="src-Boyden2005"><span class="k">[Boyden2005]</span>Boyden, Zhang, Bamberg, Nagel &amp; Deisseroth 2005, Nat Neurosci 8:1263. Millisecond control of spikes in neurons · <a href="https://doi.org/10.1038/nn1525" target="_blank" rel="noopener">doi:10.1038/nn1525</a></li>
+<li id="src-Li2005"><span class="k">[Li2005]</span>Li et al. 2005, PNAS 102:17816 · <a href="https://doi.org/10.1073/pnas.0509030102" target="_blank" rel="noopener">doi:10.1073/pnas.0509030102</a></li>
+<li id="src-Nagel2005"><span class="k">[Nagel2005]</span>Nagel et al. 2005, Curr Biol 15:2279. <i>C. elegans</i> · <a href="https://doi.org/10.1016/j.cub.2005.11.032" target="_blank" rel="noopener">doi:10.1016/j.cub.2005.11.032</a></li>
+<li id="src-Zhang2006"><span class="k">[Zhang2006]</span>Zhang et al. 2006, Nat Methods 3:785 · <a href="https://doi.org/10.1038/nmeth936" target="_blank" rel="noopener">doi:10.1038/nmeth936</a></li>
+<li id="src-Bi2006"><span class="k">[Bi2006]</span>Bi et al. 2006, Neuron 50:23. Vision restored in blind mice · <a href="https://doi.org/10.1016/j.neuron.2006.02.026" target="_blank" rel="noopener">doi:10.1016/j.neuron.2006.02.026</a></li>
+<li id="src-Deisseroth2006"><span class="k">[Deisseroth2006]</span>Deisseroth et al. 2006, J Neurosci 26:10380. The term “optogenetics” · <a href="https://doi.org/10.1523/jneurosci.3863-06.2006" target="_blank" rel="noopener">doi:10.1523/jneurosci.3863-06.2006</a></li>
+<li id="src-Aravanis2007"><span class="k">[Aravanis2007]</span>Aravanis et al. 2007, J Neural Eng 4:S143. Optical fibre in vivo, whisker control · <a href="https://doi.org/10.1088/1741-2560/4/3/s02" target="_blank" rel="noopener">doi:10.1088/1741-2560/4/3/s02</a></li>
+<li id="src-Adamantidis2007"><span class="k">[Adamantidis2007]</span>Adamantidis et al. 2007, Nature 450:420. Hypocretin neurons and waking · <a href="https://doi.org/10.1038/nature06310" target="_blank" rel="noopener">doi:10.1038/nature06310</a></li>
+<li id="src-Zhang2007"><span class="k">[Zhang2007]</span>Zhang et al. 2007, Nature 446:633. NpHR silencing · <a href="https://doi.org/10.1038/nature05744" target="_blank" rel="noopener">doi:10.1038/nature05744</a></li>
+<li id="src-Han2007"><span class="k">[Han2007]</span>Han &amp; Boyden 2007, PLOS ONE 2:e299 · <a href="https://doi.org/10.1371/journal.pone.0000299" target="_blank" rel="noopener">doi:10.1371/journal.pone.0000299</a></li>
+<li id="src-Tye2011"><span class="k">[Tye2011]</span>Tye et al. 2011, Nature 471:358. Anxiety circuit · <a href="https://doi.org/10.1038/nature09820" target="_blank" rel="noopener">doi:10.1038/nature09820</a></li>
+<li id="src-Lin2011"><span class="k">[Lin2011]</span>Lin et al. 2011, Nature 470:221. Aggression locus · <a href="https://doi.org/10.1038/nature09736" target="_blank" rel="noopener">doi:10.1038/nature09736</a></li>
+<li id="src-Liu2012"><span class="k">[Liu2012]</span>Liu et al. 2012, Nature 484:381. Engram recall · <a href="https://doi.org/10.1038/nature11028" target="_blank" rel="noopener">doi:10.1038/nature11028</a></li>
+<li id="src-Lammel2012"><span class="k">[Lammel2012]</span>Lammel et al. 2012, Nature 491:212. Reward vs aversion · <a href="https://doi.org/10.1038/nature11527" target="_blank" rel="noopener">doi:10.1038/nature11527</a></li>
+<li id="src-Ramirez2013"><span class="k">[Ramirez2013]</span>Ramirez et al. 2013, Science 341:387. False memory · <a href="https://doi.org/10.1126/science.1239073" target="_blank" rel="noopener">doi:10.1126/science.1239073</a></li>
+<li id="src-Berndt2014"><span class="k">[Berndt2014]</span>Berndt et al. 2014, Science 344:420. Engineered chloride ChR · <a href="https://doi.org/10.1126/science.1252367" target="_blank" rel="noopener">doi:10.1126/science.1252367</a></li>
+<li id="src-Wietek2014"><span class="k">[Wietek2014]</span>Wietek et al. 2014, Science 344:409. Engineered chloride ChR · <a href="https://doi.org/10.1126/science.1249375" target="_blank" rel="noopener">doi:10.1126/science.1249375</a></li>
+<li id="src-Govorunova2015"><span class="k">[Govorunova2015]</span>Govorunova et al. 2015, Science 349:647. GtACRs · <a href="https://doi.org/10.1126/science.aaa7484" target="_blank" rel="noopener">doi:10.1126/science.aaa7484</a></li>
+<li id="src-Kohl2018"><span class="k">[Kohl2018]</span>Kohl et al. 2018, Nature 556:326. Parenting modules · <a href="https://doi.org/10.1038/s41586-018-0027-0" target="_blank" rel="noopener">doi:10.1038/s41586-018-0027-0</a></li>
+<li id="src-Sahel2021"><span class="k">[Sahel2021]</span>Sahel et al. 2021, Nat Med 27:1223. Partial vision in a blind patient · <a href="https://doi.org/10.1038/s41591-021-01351-4" target="_blank" rel="noopener">doi:10.1038/s41591-021-01351-4</a></li>
+<li id="src-Crick1999"><span class="k">[Crick1999]</span>Crick 1999, Phil Trans R Soc B 354:2021 · <a href="https://doi.org/10.1098/rstb.1999.0541" target="_blank" rel="noopener">doi:10.1098/rstb.1999.0541</a></li>
+<li id="src-Zemelman2002"><span class="k">[Zemelman2002]</span>Zemelman et al. 2002, Neuron 33:15 (chARGe) · <a href="https://doi.org/10.1016/s0896-6273(01)00574-8" target="_blank" rel="noopener">doi:10.1016/s0896-6273(01)00574-8</a></li>
+<li id="src-Banghart2004"><span class="k">[Banghart2004]</span>Banghart et al. 2004, Nat Neurosci 7:1381 · <a href="https://doi.org/10.1038/nn1356" target="_blank" rel="noopener">doi:10.1038/nn1356</a></li>
+<li id="src-Oesterhelt1971"><span class="k">[Oesterhelt1971]</span>Oesterhelt &amp; Stoeckenius 1971, Nature New Biol 233:149 · <a href="https://doi.org/10.1038/newbio233149a0" target="_blank" rel="noopener">doi:10.1038/newbio233149a0</a></li>
+<li id="src-Armbruster2007"><span class="k">[Armbruster2007]</span>Armbruster et al. 2007, PNAS 104:5163. DREADDs · <a href="https://doi.org/10.1073/pnas.0700293104" target="_blank" rel="noopener">doi:10.1073/pnas.0700293104</a></li>
+<li id="src-Deisseroth2015"><span class="k">[Deisseroth2015]</span>Deisseroth 2015, Nat Neurosci 18:1213 (review) · <a href="https://doi.org/10.1038/nn.4091" target="_blank" rel="noopener">doi:10.1038/nn.4091</a></li>
+</ol>
+<p style="font:13px var(--sans);color:var(--ink3)">Values marked “textbook approximation, not from [SB]” (resting potential ≈ −70 mV, spike ≈ 1 ms) are standard textbook figures and do not come from the committee's background. [SB] describes light only by colour words (blue, green, yellow, red-shifted); no wavelengths are used here.</p>
+</section>
+</main>
+<div class="tip" id="tip"></div>
+<script>
+(function(){
+const NS="http://www.w3.org/2000/svg";
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+
+/* ---------- tabs ---------- */
+const tabs=$$('nav.tabs button'), panels=$$('section.tab');
+function show(id,push){
+  if(!document.getElementById(id))id='t1';
+  tabs.forEach(b=>{const on=b.dataset.t===id;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;});
+  panels.forEach(p=>p.classList.toggle('on',p.id===id));
+  if(push!==false)history.replaceState(null,'','#'+id);
+  if(id==='t5')drawSpk();
+}
+tabs.forEach((b,i)=>{
+  b.addEventListener('click',()=>{show(b.dataset.t);window.scrollTo({top:0});});
+  b.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){const j=(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[j].focus();tabs[j].click();}
+  });
+});
+// footers
+panels.forEach((p,i)=>{
+  const f=document.createElement('footer');f.className='tabfoot';
+  const prev=i>0?`<button data-go="${panels[i-1].id}">← ${tabs[i-1].textContent.replace(/^\d+/,'')}</button>`:'<span></span>';
+  const next=i<panels.length-1?`<button data-go="${panels[i+1].id}">${tabs[i+1].textContent.replace(/^\d+/,'')} →</button>`:'<span></span>';
+  f.innerHTML=`${prev}<button data-src="1">Sources</button>${next}`;
+  p.appendChild(f);
+});
+document.addEventListener('click',e=>{
+  const go=e.target.closest('[data-go]');if(go){show(go.dataset.go);window.scrollTo({top:0});return;}
+  if(e.target.closest('[data-src]')){show('t8');document.getElementById('sources').scrollIntoView({behavior:'smooth'});return;}
+  const a=e.target.closest('a[href^="#src-"]');
+  if(a){e.preventDefault();const t=document.querySelector(a.getAttribute('href'));show('t8');
+    t.scrollIntoView({behavior:'smooth',block:'center'});t.style.background='#4aa8ff22';setTimeout(()=>t.style.background='',1600);}
+});
+
+/* ---------- tooltips ---------- */
+const tip=$('#tip');
+$$('.term').forEach(t=>{
+  t.tabIndex=0;
+  const on=e=>{tip.textContent=t.dataset.def||'';const r=t.getBoundingClientRect();
+    tip.style.left=Math.min(innerWidth-300,Math.max(8,r.left))+'px';tip.style.top=(r.bottom+8)+'px';tip.style.opacity=1;};
+  const off=()=>tip.style.opacity=0;
+  t.addEventListener('mouseenter',on);t.addEventListener('focus',on);t.addEventListener('mouseleave',off);t.addEventListener('blur',off);
+});
+
+const T=(x,y,s,p,o)=>el('text',Object.assign({x:x,y:y,'font-size':12,fill:'#a9b8c6'},o||{}),p,s);
+/* ---------- Fig 1 timeline ---------- */
+(function(){const g=$('#tl');const C={h:'#ffb547',j:'#5fd39a',d:'#4aa8ff',o:'#6f8293'};
+ const ev=[['1971','bacteriorhodopsin','o'],['1991','fast algal photocurrents','h'],['2002','ChR1','h'],['2003','ChR2','h'],['2005','neurons spike to light','j'],['2006','the word “optogenetics”','d'],['2007','living mice; first silencer','d'],['2011–13','circuit maps','o'],['2021','first patient','o']];
+ ev.forEach(([y,t,k],i)=>{const x=70+i*107.5,up=i%2===0,c=C[k];
+  el('line',{x1:x,y1:up?120:140,x2:x,y2:up?78:182,stroke:'#2a3d50'},g);
+  el('circle',{cx:x,cy:130,r:8,fill:c,stroke:'#070b10','stroke-width':2},g);
+  T(x,up?52:206,y,g,{'text-anchor':'middle','font-size':14,'font-weight':600,fill:'#e6edf3'});
+  T(x,up?70:224,t,g,{'text-anchor':'middle',fill:c==='#6f8293'?'#a9b8c6':c});});
+})();
+/* ---------- Fig 2b channel vs pump ---------- */
+function membrane(g,x0,w,y0,y1){el('rect',{x:x0,y:y0,width:w,height:y1-y0,fill:'#3a2f22'},g);
+ for(let x=x0+6;x<x0+w;x+=12){el('circle',{cx:x,cy:y0+5,r:4,fill:'#c9a36b'},g);el('circle',{cx:x,cy:y1-5,r:4,fill:'#c9a36b'},g);}}
+function chanPump(g,ox,oy,sc,full){const G=el('g',{transform:`translate(${ox},${oy}) scale(${sc})`},g);
+ // channel
+ membrane(G,20,420,120,180);el('rect',{x:200,y:110,width:24,height:80,rx:6,fill:'#4aa8ff'},G);el('rect',{x:236,y:110,width:24,height:80,rx:6,fill:'#4aa8ff'},G);
+ el('rect',{x:224,y:112,width:12,height:76,fill:'#0c131b'},G);
+ [[175,60],[205,75],[240,55],[270,72],[215,40],[255,92]].forEach(([x,y])=>el('circle',{cx:x,cy:y,r:6,fill:'#5fd39a'},G));
+ [[228,240],[238,262],[220,285]].forEach(([x,y])=>el('circle',{cx:x,cy:y,r:6,fill:'#5fd39a'},G));
+ el('line',{x1:230,y1:70,x2:230,y2:225,stroke:'#5fd39a','stroke-width':3,'marker-end':'url(#ah)'},G);
+ // pump
+ membrane(G,540,420,120,180);el('rect',{x:720,y:105,width:60,height:90,rx:14,fill:'#ffb547','fill-opacity':.85},G);
+ el('circle',{cx:750,cy:270,r:6,fill:'#ffd34d'},G);el('circle',{cx:735,cy:60,r:6,fill:'#ffd34d'},G);el('circle',{cx:765,cy:48,r:6,fill:'#ffd34d'},G);el('circle',{cx:790,cy:70,r:6,fill:'#ffd34d'},G);
+ el('line',{x1:750,y1:255,x2:750,y2:85,stroke:'#ffb547','stroke-width':3,'marker-end':'url(#ah2)'},G);
+ el('path',{d:'M880 40 L850 70 L866 72 L838 104',stroke:'#9fd8ff','stroke-width':3,fill:'none'},G);
+ if(full){T(890,36,'1 photon',G,{fill:'#9fd8ff'});
+  T(30,40,'outside',G,{class:'mono',fill:'#6f8293'});T(30,290,'inside',G,{class:'mono',fill:'#6f8293'});
+  T(230,312,'channel: passive, many ions, fast',G,{'text-anchor':'middle','font-size':14,fill:'#e6edf3'});
+  T(750,312,'pump: active, 1 ion per photon',G,{'text-anchor':'middle','font-size':14,fill:'#e6edf3'});
+  T(300,230,'downhill',G,{fill:'#5fd39a',class:'lab'});T(770,225,'uphill',G,{fill:'#ffc979',class:'lab'});}
+ return G;}
+chanPump($('#chpump'),0,0,1,true);
+/* ---------- Fig 4c ChR2 ---------- */
+(function(){const g=$('#chr2');membrane(g,20,600,130,200);
+ const xs=[150,190,230,270,330,370,410];xs.forEach((x,i)=>el('rect',{x:x-15,y:110,width:30,height:110,rx:12,fill:'#4aa8ff','fill-opacity':.55,stroke:'#9fd8ff'},g));
+ el('rect',{x:288,y:112,width:24,height:106,fill:'#0c131b'},g);
+ el('path',{d:'M220 165 l12 -8 l12 8 l12 -8 l12 8',stroke:'#ffd34d','stroke-width':3,fill:'none'},g);
+ T(246,240,'retinal',g,{'text-anchor':'middle',fill:'#ffd34d',class:'lab'});
+ el('path',{d:'M470 30 L420 70 L440 72 L400 105',stroke:'#4aa8ff','stroke-width':3,fill:'none'},g);
+ T(480,30,'blue light',g,{fill:'#9fd8ff','font-size':13});
+ ['+','+','+'].forEach((s,i)=>{const y=40+i*28;el('circle',{cx:300,cy:y,r:9,fill:'#5fd39a'},g);T(300,y+4,'+',g,{'text-anchor':'middle',fill:'#070b10','font-weight':700});});
+ el('circle',{cx:300,cy:260,r:9,fill:'#5fd39a'},g);T(300,264,'+',g,{'text-anchor':'middle',fill:'#070b10','font-weight':700});
+ el('line',{x1:300,y1:95,x2:300,y2:240,stroke:'#5fd39a','stroke-width':3,'marker-end':'url(#ah)'},g);
+ T(30,40,'outside',g,{class:'mono',fill:'#6f8293'});T(30,295,'inside: cations in → depolarization',g,{fill:'#e6edf3','font-size':13});
+ T(280,320,'7 helices',g,{'text-anchor':'middle',fill:'#9fd8ff'});
+ el('rect',{x:660,y:60,width:320,height:220,rx:8,fill:'#0c131b',stroke:'#2a3d50'},g);
+ T(820,82,'inset: channel vs pump (Fig 2b)',g,{'text-anchor':'middle',fill:'#6f8293',class:'mono','font-size':11});
+ chanPump(g,665,95,0.33,false);
+ T(740,255,'channel (ChR2)',g,{'text-anchor':'middle',fill:'#5fd39a'});T(912,255,'pump',g,{'text-anchor':'middle',fill:'#ffc979'});
+})();
+/* ---------- Fig 5a pulses -> spikes ---------- */
+const spk=$('#spk'),sx=spk.getContext('2d');let lightOn=true,noChR=false;
+function drawSpk(){const W=1000,H=360,per=[200,120,80,55][+$('#rate').value];sx.clearRect(0,0,W,H);
+ sx.font='13px Inter,system-ui,sans-serif';sx.fillStyle='#a9b8c6';sx.textAlign='left';
+ sx.fillText('blue light',20,40);sx.fillText('voltage',20,200);
+ sx.strokeStyle='#2a3d50';sx.beginPath();sx.moveTo(110,70);sx.lineTo(980,70);sx.stroke();
+ const pulses=[];if(lightOn)for(let t=130;t<960;t+=per)pulses.push(t);
+ sx.fillStyle='#4aa8ff';pulses.forEach(t=>sx.fillRect(t,30,10,40));
+ const base=280,thr=210;sx.setLineDash([5,5]);sx.strokeStyle='rgba(255,181,71,.6)';sx.beginPath();sx.moveTo(110,thr);sx.lineTo(980,thr);sx.stroke();sx.setLineDash([]);
+ sx.fillStyle='#ffc979';sx.textAlign='right';sx.fillText('threshold',975,thr-8);
+ sx.strokeStyle='#9fd8ff';sx.lineWidth=2.5;sx.beginPath();
+ for(let x=110;x<=980;x++){let v=base;
+  if(!noChR)pulses.forEach(t=>{const d=x-t;if(d>=0&&d<6)v-=d*14;else if(d>=6&&d<10)v=base-84-(d-6)*25;else if(d>=10&&d<16)v=Math.min(v,base-184+(d-10)*38);else if(d>=16&&d<40)v=Math.min(v,base+20*Math.exp(-(d-16)/8)+0);});
+  x===110?sx.moveTo(x,v):sx.lineTo(x,v);}
+ sx.stroke();sx.lineWidth=1;
+ sx.fillStyle='#6f8293';sx.textAlign='center';
+ sx.fillText(noChR?'no ChR2: light has no effect':(lightOn?'one spike per light pulse':'light off: neuron stays at rest'),545,335);
+ sx.textAlign='left';sx.fillText('time →',110,350);}
+$('#rate').addEventListener('input',drawSpk);
+$('#lightBtn').addEventListener('click',e=>{lightOn=!lightOn;e.target.setAttribute('aria-pressed',lightOn);e.target.textContent=lightOn?'Light pulses on':'Light pulses off';drawSpk();});
+$('#ctrlBtn').addEventListener('click',e=>{noChR=!noChR;e.target.setAttribute('aria-pressed',noChR);drawSpk();});
+drawSpk();
+/* ---------- Fig 5b fibre ---------- */
+$('#fibreBtn').addEventListener('click',e=>{const on=e.target.getAttribute('aria-pressed')!=='true';e.target.setAttribute('aria-pressed',on);
+ e.target.textContent=on?'Turn fibre light off':'Turn fibre light on';$('#beam').setAttribute('opacity',on?.7:0);
+ $('#whDef').setAttribute('opacity',on?1:.25);$('#whDef').setAttribute('stroke-dasharray',on?'none':'5 4');$('#whRest').setAttribute('opacity',on?.25:1);});
+/* ---------- Fig 6 palette ---------- */
+(function(){const g=$('#palette');
+ const P=[['ChR2','blue','excite','#4aa8ff','up','ch'],['ChR1','green','protons','#5fd39a','p','ch'],['NpHR','yellow','silence','#ffd34d','dn','pu'],['Chrimson','red-shifted','excite','#ff6b5e','up','ch'],['GtACR','—','silence · channel','#c9a3ff','dn','ch'],['DREADD','drug, not light','slow','#a9b8c6','n','pill']];
+ P.forEach(([n,c,f,col,dir,ic],i)=>{const x=10+i*165;
+  el('rect',{x:x,y:20,width:150,height:260,rx:12,fill:'#101a24',stroke:col,'stroke-width':2},g);
+  el('rect',{x:x,y:20,width:150,height:10,fill:col},g);
+  T(x+75,62,n,g,{'text-anchor':'middle','font-size':17,'font-weight':600,fill:'#e6edf3'});
+  T(x+75,84,c,g,{'text-anchor':'middle',fill:col});T(x+75,104,f,g,{'text-anchor':'middle'});
+  const cy=170;
+  if(ic==='ch'){el('rect',{x:x+45,y:cy-25,width:22,height:50,rx:5,fill:col,'fill-opacity':.7},g);el('rect',{x:x+83,y:cy-25,width:22,height:50,rx:5,fill:col,'fill-opacity':.7},g);}
+  else if(ic==='pu'){el('rect',{x:x+50,y:cy-25,width:50,height:50,rx:12,fill:col,'fill-opacity':.7},g);}
+  else{el('rect',{x:x+40,y:cy-14,width:70,height:28,rx:14,fill:'none',stroke:col,'stroke-width':2},g);el('rect',{x:x+40,y:cy-14,width:35,height:28,rx:14,fill:col,'fill-opacity':.7},g);}
+  T(x+75,cy+48,ic==='ch'?'channel':ic==='pu'?'pump':'drug-activated receptor',g,{'text-anchor':'middle','font-size':11,fill:'#6f8293'});
+  T(x+75,262,dir==='up'?'↑ depolarize':dir==='dn'?'↓ hyperpolarize':dir==='p'?'passes protons':'slow · body-wide',g,{'text-anchor':'middle','font-size':13,'font-weight':600,fill:dir==='up'?'#5fd39a':dir==='dn'?'#ff8f85':'#a9b8c6'});});
+})();
+/* ---------- Fig 7 circuit explorer ---------- */
+(function(){const g=$('#circs');
+ const R={DG:[560,150],LHb:[500,215],BNST:[330,250],MPOA:[290,350],LH:[440,320],VMH:[450,400],BLA:[560,395],CeA:[590,315],vHPC:[690,375],VTA:[660,255],LDT:[790,305],MLR:[750,200]};
+ const LO={DG:[0,-16,'middle'],LHb:[0,-16,'middle'],BNST:[0,-16,'middle'],MPOA:[-14,5,'end'],LH:[-14,5,'end'],VMH:[-14,5,'end'],BLA:[0,26,'middle'],CeA:[14,5,'start'],vHPC:[14,5,'start'],VTA:[0,-16,'middle'],LDT:[14,5,'start'],MLR:[14,5,'start']};
+ const C=[['c-sleep','Sleep → waking','#9fd8ff',[['LH']]],['c-engram','Memory engrams','#c9a3ff',[['DG']]],['c-reward','Reward vs aversion','#5fd39a',[['LDT','VTA','#5fd39a'],['LHb','VTA','#ff6b5e']]],
+  ['c-anx','Anxiety','#ffb547',[['BLA','CeA'],['BLA','vHPC'],['BNST','LH'],['BNST','VTA']]],['c-innate','Aggression & parenting','#ff8f85',[['VMH'],['MPOA']]],['c-loco','Locomotion','#7c6cff',[['MLR']]]];
+ const bt=$('#circBtns');const groups={};const nodes=[],nodeG={};
+ C.forEach(([id,name,col,links])=>{const hg=el('g',{class:'hit','data-c':id},g);groups[id]=hg;
+  links.forEach(([a,b,c2])=>{const [x1,y1]=R[a];if(b){const [x2,y2]=R[b];
+    const L=Math.hypot(x2-x1,y2-y1),ux=(x2-x1)/L,uy=(y2-y1)/L,m=34;
+    el('line',{x1:x1+ux*m,y1:y1+uy*m,x2:x2-ux*m,y2:y2-uy*m,stroke:'transparent','stroke-width':44,'data-hit':'line'},hg);
+    el('line',{x1:x1,y1:y1,x2:x2,y2:y2,stroke:c2||col,'stroke-opacity':.45,'stroke-width':3.5,class:'path','stroke-linecap':'round'},hg);}
+   else nodes.push([id,x1,y1,col]);});
+  const b=document.createElement('button');b.textContent=name;b.dataset.c=id;b.setAttribute('aria-pressed','false');b.style.borderColor=col+'88';bt.appendChild(b);});
+ nodes.forEach(([id,x,y,col])=>{const hg=el('g',{class:'hit','data-c':id},g);nodeG[id]=(nodeG[id]||[]).concat(hg);
+  el('circle',{cx:x,cy:y,r:26,fill:col,'fill-opacity':.1,stroke:col,'stroke-opacity':.45,'stroke-width':3,class:'path'},hg);});
+ const ng=el('g',{},g);
+ for(const k in R){const [x,y]=R[k],[dx,dy,an]=LO[k];el('circle',{cx:x,cy:y,r:6,fill:'#e6edf3',stroke:'#070b10','stroke-width':2,'pointer-events':'none'},ng);
+  T(x+dx,y+dy,k,ng,{'text-anchor':an,'font-size':13,'font-weight':600,fill:'#e6edf3',class:'lab','pointer-events':'none'});}
+ function sel(id){for(const k in groups)groups[k].classList.toggle('on',k===id);for(const k in nodeG)nodeG[k].forEach(n=>n.classList.toggle('on',k===id));
+  $$('#circBtns button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.c===id));
+  $$('#t7 .card').forEach(c=>c.classList.toggle('hl',c.id===id));
+  const c=document.getElementById(id);if(c&&c.scrollIntoView&&sel.user)c.scrollIntoView({behavior:'smooth',block:'nearest'});}
+ const SEG=[],ND=[];C.forEach(([id,,,links])=>links.forEach(([a,b])=>{if(b)SEG.push([id,...R[a],...R[b]]);else ND.push([id,...R[a]]);}));
+ function near(x,y){let best=null,bd=1e9;
+  ND.forEach(([id,cx,cy])=>{const d=Math.hypot(x-cx,y-cy)-26;if(d<=0&&d-100<bd){bd=d-100;best=id;}}); // nodes win
+  if(best)return best;
+  SEG.forEach(([id,x1,y1,x2,y2])=>{const vx=x2-x1,vy=y2-y1,L2=vx*vx+vy*vy;const t=Math.max(0,Math.min(1,((x-x1)*vx+(y-y1)*vy)/L2));
+   const d=Math.hypot(x-x1-t*vx,y-y1-t*vy);const L=Math.sqrt(L2),tm=34/L;if(t>=tm&&t<=1-tm&&d<=22&&d<bd){bd=d;best=id;}});
+  return best;}
+ const svgB=$('#brain');
+ svgB.addEventListener('click',e=>{const p=svgB.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const q=p.matrixTransform(svgB.getScreenCTM().inverse());
+  const id=near(q.x,q.y);sel.user=!!id;sel(id);});
+ bt.addEventListener('click',e=>{const b=e.target.closest('button');if(b){sel.user=true;sel(b.dataset.c);}});
+ sel('c-reward');
+})();
+/* ---------- Fig 7b engram ---------- */
+(function(){const g=$('#engram');
+ function box(x,lab,col){el('rect',{x:x,y:60,width:290,height:180,rx:10,fill:'#101a24',stroke:col,'stroke-width':2},g);T(x+12,84,lab,g,{fill:col,'font-weight':600,'font-size':13});}
+ function mouse(x,y,frz){el('ellipse',{cx:x,cy:y,rx:34,ry:18,fill:'#a9b8c6'},g);el('circle',{cx:x+32,cy:y-10,r:12,fill:'#a9b8c6'},g);el('path',{d:`M${x-34} ${y} q-25 5 -30 -15`,stroke:'#a9b8c6',fill:'none','stroke-width':2},g);
+  if(frz)T(x,y+42,'freezes',g,{'text-anchor':'middle',fill:'#ff8f85','font-weight':600});}
+ function cells(x,y,on){for(let i=0;i<8;i++)el('circle',{cx:x+(i%4)*16,cy:y+Math.floor(i/4)*16,r:5,fill:on.includes(i)?'#4aa8ff':'#2a3d50'},g);}
+ function bolt(x,y){el('path',{d:`M${x} ${y} l-10 18 h10 l-8 18`,stroke:'#ffd34d','stroke-width':3,fill:'none'},g);}
+ T(10,30,'1 · fear learning in box A',g,{'font-size':14,fill:'#e6edf3','font-weight':600});
+ box(10,'box A','#ffb547');mouse(110,170,false);bolt(240,110);T(232,162,'shock',g,{'text-anchor':'middle',fill:'#ffd34d'});cells(190,190,[1,2,5]);T(214,232,'active cells tagged',g,{'text-anchor':'middle','font-size':11});
+ T(355,30,'2 · neutral box B, light on',g,{'font-size':14,fill:'#e6edf3','font-weight':600});
+ box(355,'box B','#6f8293');mouse(450,160,true);cells(540,110,[1,2,5]);el('path',{d:'M590 95 l-20 15',stroke:'#4aa8ff','stroke-width':3},g);T(560,165,'light → tagged cells',g,{'text-anchor':'middle','font-size':11,fill:'#9fd8ff'});
+ T(700,30,'3 · false memory',g,{'font-size':14,fill:'#e6edf3','font-weight':600});
+ box(700,'box C → then A','#c9a3ff');T(712,104,'A-cells reactivated during shock in C',g,{'font-size':11});
+ mouse(800,175,true);bolt(940,120);T(845,262,'later: freezes in safe box A',g,{'text-anchor':'middle',fill:'#ff8f85','font-size':12});
+})();
+/* ---------- Fig 8a retina ---------- */
+(function(){const g=$('#retina');
+ el('rect',{x:20,y:120,width:120,height:50,rx:20,fill:'#2a3d50',stroke:'#a9b8c6'},g);el('circle',{cx:50,cy:145,r:12,fill:'#070b10',stroke:'#9fd8ff'},g);
+ T(80,105,'goggles + camera',g,{'text-anchor':'middle',fill:'#e6edf3'});
+ for(let i=0;i<4;i++)el('rect',{x:160+i*28,y:136,width:14,height:18,fill:'#ff6b5e'},g);
+ T(215,190,'light pulses',g,{'text-anchor':'middle',fill:'#ff8f85'});
+ el('circle',{cx:380,cy:145,r:80,fill:'#101a24',stroke:'#a9b8c6','stroke-width':2},g);el('circle',{cx:305,cy:145,r:18,fill:'#070b10',stroke:'#9fd8ff'},g);
+ T(380,250,'eye',g,{'text-anchor':'middle'});
+ el('path',{d:'M455 120 L560 40 M455 170 L560 290',stroke:'#2a3d50','stroke-dasharray':'4 4'},g);
+ el('rect',{x:560,y:30,width:250,height:260,rx:8,fill:'#0c131b',stroke:'#2a3d50'},g);
+ T(685,52,'retina cross-section',g,{'text-anchor':'middle',fill:'#6f8293',class:'mono','font-size':11});
+ for(let i=0;i<7;i++){const x=585+i*32;el('circle',{cx:x,cy:110,r:10,fill:'#ff6b5e','fill-opacity':.85,stroke:'#ffb0a8'},g);el('rect',{x:x-5,y:225,width:10,height:40,rx:4,fill:'#3a4552'},g);}
+ T(818,114,'ganglion cells + Chrimson',g,{fill:'#ff8f85'});T(818,250,'rods & cones (dead)',g,{fill:'#6f8293'});
+ T(818,180,'middle layers',g,{fill:'#6f8293'});
+ el('line',{x1:560,y1:75,x2:600,y2:95,stroke:'#ff6b5e','stroke-width':2.5},g);
+ el('path',{d:'M380 65 C380 15 470 10 520 15',stroke:'#9fd8ff','stroke-width':2.5,fill:'none'},g);
+ T(400,40,'to visual cortex (EEG)',g,{'text-anchor':'middle',fill:'#9fd8ff',class:'lab'});
+})();
+
+function route(){const h=location.hash.slice(1);if(/^t[1-8]$/.test(h)){show(h,false);window.scrollTo(0,0);}else if(h.startsWith('src-')){show('t8',false);const t=document.getElementById(h);t&&t.scrollIntoView({block:'center'});}}
+window.addEventListener('hashchange',route);
+const h=location.hash.slice(1);show(/^t[1-8]$/.test(h)?h:(h.startsWith('src-')?'t8':'t1'),false);
+if(h.startsWith('src-')){const t=document.getElementById(h);t&&t.scrollIntoView();}
+})();
+</script>
+</body>
+</html>
