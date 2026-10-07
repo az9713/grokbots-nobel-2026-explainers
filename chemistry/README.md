@@ -1,10 +1,10 @@
 # The 2026 Nobel Prize in Chemistry: how chemistry learned to choose a mirror image
 
-[![View live explainer](https://img.shields.io/badge/View_live_explainer-az9713.github.io-f5a623?style=for-the-badge)](https://az9713.github.io/grokbots-nobel-chemistry-2026-explainer/)
+[![View live explainer](https://img.shields.io/badge/View_live_explainer-az9713.github.io-f5a623?style=for-the-badge)](https://az9713.github.io/grokbots-nobel-2026-explainers/chemistry/)
 
-**Live page: https://az9713.github.io/grokbots-nobel-chemistry-2026-explainer/**
+**Live page: https://az9713.github.io/grokbots-nobel-2026-explainers/chemistry/**
 
-[![Screenshot of the explainer's first tab](docs/screenshot.png)](https://az9713.github.io/grokbots-nobel-chemistry-2026-explainer/)
+[![Screenshot of the explainer's first tab](docs/screenshot.png)](https://az9713.github.io/grokbots-nobel-2026-explainers/chemistry/)
 
 ## Summary
 
@@ -44,7 +44,7 @@ This is an interactive, single-page explainer of the 2026 Nobel Prize in Chemist
 
 ## How this was built: full team transcript
 
-[The full team transcript](https://az9713.github.io/grokbots-nobel-chemistry-2026-explainer/transcript.html) is the complete record of the agent team that built this explainer, from research to QA and publishing. To read the finished page, go back to [the explainer](https://az9713.github.io/grokbots-nobel-chemistry-2026-explainer/).
+[The full team transcript](https://az9713.github.io/grokbots-nobel-2026-explainers/chemistry/transcript.html) is the complete record of the agent team that built this explainer, from research to QA and publishing. To read the finished page, go back to [the explainer](https://az9713.github.io/grokbots-nobel-2026-explainers/chemistry/).
 
 ## Sources
 

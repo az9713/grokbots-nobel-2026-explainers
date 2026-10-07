@@ -1,10 +1,10 @@
 # The 2026 Nobel Prize in Physics: IceCube and the high-energy neutrino sky
 
-[![View live explainer](https://img.shields.io/badge/View_live_explainer-az9713.github.io-f5a623?style=for-the-badge)](https://az9713.github.io/grokbots-nobel-physics-2026-explainer/)
+[![View live explainer](https://img.shields.io/badge/View_live_explainer-az9713.github.io-f5a623?style=for-the-badge)](https://az9713.github.io/grokbots-nobel-2026-explainers/physics/)
 
-**Live page: https://az9713.github.io/grokbots-nobel-physics-2026-explainer/**
+**Live page: https://az9713.github.io/grokbots-nobel-2026-explainers/physics/**
 
-[![Screenshot of the explainer's first tab](docs/screenshot.png)](https://az9713.github.io/grokbots-nobel-physics-2026-explainer/)
+[![Screenshot of the explainer's first tab](docs/screenshot.png)](https://az9713.github.io/grokbots-nobel-2026-explainers/physics/)
 
 ## Summary
 

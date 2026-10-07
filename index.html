@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Nobel Prizes 2026 Explainers</title>
+<style>
+:root{--bg:#0f172a;--card:#1e293b;--line:#334155;--ink:#e2e8f0;--ink2:#cbd5e1;--muted:#94a3b8;--acc:#fb923c;--acc2:#2dd4bf}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1100px;margin:0 auto;padding:48px 16px}
+h1{margin:0 0 8px;font-size:clamp(1.6rem,4vw,2.4rem)}
+.lead{color:var(--ink2);max-width:70ch;margin:0 0 32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+a.card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;color:inherit;text-decoration:none}
+a.card:hover,a.card:focus-visible{border-color:var(--acc);outline:none}
+a.card img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);display:block}
+.body{padding:16px 18px 20px}
+.field{color:var(--acc);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+h2{margin:4px 0 8px;font-size:1.15rem;line-height:1.35}
+.body p{margin:0;color:var(--muted);font-size:.95rem}
+footer{margin-top:40px;color:var(--muted);font-size:.9rem}
+footer a{color:var(--acc2)}
+</style>
+</head>
+<body>
+<main>
+<h1>The 2026 Nobel Prizes, explained</h1>
+<p class="lead">Three interactive, single-page explainers of the 2026 science prizes. Each one is written for technically trained readers from outside the field. Terms are defined on first use, figures are labelled, and claims are tagged by strength of evidence.</p>
+<div class="grid">
+<a class="card" href="physics/">
+<img src="physics/docs/screenshot.png" alt="First tab of the physics explainer">
+<div class="body"><div class="field">Physics</div><h2>IceCube and the high-energy neutrino sky</h2><p>Francis Halzen, for the IceCube Neutrino Observatory and the discovery of high-energy neutrinos of astrophysical origin.</p></div>
+</a>
+<a class="card" href="medicine/">
+<img src="medicine/docs/screenshot.png" alt="First tab of the physiology or medicine explainer">
+<div class="body"><div class="field">Physiology or Medicine</div><h2>Switching neurons on and off with light</h2><p>Karl Deisseroth, Peter Hegemann and Georg Nagel, for light-gated ion channels and optogenetics.</p></div>
+</a>
+<a class="card" href="chemistry/">
+<img src="chemistry/docs/screenshot.png" alt="First tab of the chemistry explainer">
+<div class="body"><div class="field">Chemistry</div><h2>How chemistry learned to choose a mirror image</h2><p>Henri B. Kagan and Kenso Soai, for non-linear effects and autocatalysis in asymmetric organic synthesis.</p></div>
+</a>
+</div>
+<footer>Built by the GrokBots agent team. Sources, research notes and QA reports are in each folder of the <a href="https://github.com/az9713/grokbots-nobel-2026-explainers">GitHub repo</a>. The chemistry folder also has the <a href="chemistry/transcript.html">full team transcript</a>.</footer>
+</main>
+</body>
+</html>
