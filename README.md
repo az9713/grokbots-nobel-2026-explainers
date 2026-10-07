@@ -42,6 +42,10 @@ This is an interactive, single-page explainer of the 2026 Nobel Prize in Chemist
 - **Devin Development** published it to GitHub Pages.
 - **Chief GrokBot** orchestrated the work.
 
+## How this was built: full team transcript
+
+[The full team transcript](https://az9713.github.io/grokbots-nobel-chemistry-2026-explainer/transcript.html) is the complete record of the agent team that built this explainer, from research to QA and publishing. To read the finished page, go back to [the explainer](https://az9713.github.io/grokbots-nobel-chemistry-2026-explainer/).
+
 ## Sources
 
 The main source is the Nobel Committee for Chemistry's [scientific background](https://www.nobelprize.org/uploads/2026/10/advanced-chemistryprize2026.pdf), together with the [popular science background](https://www.nobelprize.org/uploads/2026/10/popular-chemistryprize2026.pdf), the [press release](https://www.nobelprize.org/prizes/chemistry/2026/press-release/) and the papers they cite. The full citations with DOIs are in `research.md` and on the page's last tab.
