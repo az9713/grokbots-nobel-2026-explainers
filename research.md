@@ -1,6 +1,6 @@
 # 2026 Nobel Prize in Physiology or Medicine: research dossier (Rex Research)
 
-Audience: MIT PhDs without a neuroscience or biology background. Source tags: **[SB]** is the committee's scientific background ("Optogenetics. Discovery of a neuronal switch", 15 pp.), which anchors almost everything here. **[PR]** is the press release. Claim tags: **FACT** means a primary source states it, **DERIVED** means my own arithmetic or textbook physics (shown or flagged), and **SPEC** means interpretation or an open question. Local copies are in `src/adv.pdf` and `src/adv.txt`. I checked every DOI below against Crossref on 7 Oct 2026; the list is in `src/dois.json`.
+Audience: PhD-level readers without a neuroscience or biology background. Source tags: **[SB]** is the committee's scientific background ("Optogenetics. Discovery of a neuronal switch", 15 pp.), which anchors almost everything here. **[PR]** is the press release. Claim tags: **FACT** means a primary source states it, **DERIVED** means my own arithmetic or textbook physics (shown or flagged), and **SPEC** means interpretation or an open question. Local copies are in `src/adv.pdf` and `src/adv.txt`. I checked every DOI below against Crossref on 7 Oct 2026; the list is in `src/dois.json`.
 
 **Note on numbers:** this prize is about methods, and [SB] gives very few hard numbers. I have kept to the numbers it does give and flagged textbook values such as wavelengths and kinetics in §9 instead of slipping them in.
 
