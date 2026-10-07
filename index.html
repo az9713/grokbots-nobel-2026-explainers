@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The 2026 Nobel Prize in Physics: IceCube and the high-energy neutrino sky</title>
+<style>
+:root{
+  --bg:#070b10; --bg2:#0c131b; --panel:#101a24; --line:#1e2c3a; --line2:#2a3d50;
+  --ink:#e6edf3; --ink2:#a9b8c6; --ink3:#6f8293;
+  --ice:#9fd8ff; --cher:#4aa8ff; --uv:#7c6cff; --amber:#ffb547; --red:#ff6b5e; --green:#5fd39a;
+  --serif:"Iowan Old Style","Charter","Source Serif Pro",Georgia,serif;
+  --sans:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+  --mono:"JetBrains Mono","SFMono-Regular",Consolas,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font:17px/1.62 var(--serif);min-height:100vh;
+  background:radial-gradient(1200px 500px at 85% -10%,#0f2233 0%,transparent 60%),var(--bg)}
+a{color:var(--ice);text-decoration-color:#9fd8ff55;text-underline-offset:3px}
+a:hover{text-decoration-color:var(--ice)}
+header.mast{border-bottom:1px solid var(--line);padding:22px 32px 0;position:sticky;top:0;z-index:20;
+  background:linear-gradient(#070b10f2,#070b10e8);backdrop-filter:blur(6px)}
+.mast .kicker{font:600 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
+.mast h1{font:600 26px/1.15 var(--sans);letter-spacing:-.01em;margin:8px 0 4px}
+.mast .sub{font:14px var(--sans);color:var(--ink2);margin:0 0 14px}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs button{all:unset;cursor:pointer;font:500 13px/1 var(--sans);color:var(--ink3);padding:11px 14px 12px;
+  border-bottom:2px solid transparent;white-space:nowrap}
+nav.tabs button .n{font:11px var(--mono);color:var(--ink3);margin-right:6px}
+nav.tabs button:hover{color:var(--ink)}
+nav.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--cher)}
+nav.tabs button[aria-selected=true] .n{color:var(--cher)}
+nav.tabs button:focus-visible{outline:2px solid var(--cher);outline-offset:-2px}
+main{max-width:1060px;margin:0 auto;padding:30px 32px 60px}
+section.tab{display:none}
+section.tab.on{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+h2{font:600 30px/1.2 var(--sans);letter-spacing:-.015em;margin:0 0 16px}
+h3{font:600 17px/1.3 var(--sans);margin:26px 0 8px;color:var(--ink)}
+p{margin:0 0 14px;max-width:72ch}
+.take{border:1px solid #2b4a66;background:linear-gradient(90deg,#0f2436,#0c1822 70%);border-radius:10px;
+  padding:14px 18px;margin:0 0 22px;font:500 16px/1.5 var(--sans);max-width:none}
+.take b{font:600 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cher);display:block;margin-bottom:4px}
+.term{font-weight:700;color:var(--ink);border-bottom:1px dotted var(--ice);cursor:help}
+.def{color:var(--ink2)}
+.tag{display:inline-block;font:600 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  padding:4px 7px 3px;border-radius:999px;vertical-align:2px;margin:0 2px;border:1px solid}
+.tag.est{color:var(--green);border-color:#5fd39a66;background:#5fd39a14}
+.tag.evi{color:var(--amber);border-color:#ffb54766;background:#ffb54714}
+.tag.open{color:#c9a3ff;border-color:#c9a3ff66;background:#c9a3ff14}
+.tag.out{color:var(--red);border-color:#ff6b5e66;background:#ff6b5e14}
+.est-n{font:12px var(--mono);color:var(--ink3);white-space:nowrap}
+cite{font:12px var(--mono);font-style:normal;color:var(--ink3)}
+cite a{color:var(--ink3)}
+.eq{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:6px 0 18px;
+  overflow-x:auto;font-size:19px;text-align:center}
+.eq .note{display:block;font:12px var(--mono);color:var(--ink3);margin-top:8px;text-align:center}
+math{font-family:"STIX Two Math","Latin Modern Math","Cambria Math","DejaVu Serif","Noto Serif",serif}
+figure{margin:18px 0 26px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:16px 16px 12px}
+figure svg,figure canvas{display:block;width:100%;height:auto}
+figcaption{font:13px/1.5 var(--sans);color:var(--ink2);margin-top:10px}
+figcaption .fn{font:600 11px var(--mono);color:var(--cher);letter-spacing:.1em;margin-right:8px}
+figcaption .sch{font:11px var(--mono);color:var(--ink3);border:1px solid var(--line2);border-radius:4px;padding:1px 5px;margin-left:6px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}main{padding:22px 18px}header.mast{padding:16px 18px 0}}
+ul{padding-left:20px;margin:0 0 14px;max-width:72ch}
+li{margin:4px 0}
+table.cmp{border-collapse:collapse;width:100%;font:14px/1.45 var(--sans);margin:8px 0 18px}
+table.cmp th,table.cmp td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+table.cmp thead th{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+table.cmp td:first-child{color:var(--ink3);width:22%}
+table.cmp b{color:var(--ice)}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:14px 0}
+@media(max-width:820px){.cards{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font:14.5px/1.55 var(--sans);transition:border-color .2s,box-shadow .2s}
+.card h4{font:600 15px var(--sans);margin:0 0 6px}
+.card.hl{border-color:var(--cher);box-shadow:0 0 0 1px var(--cher),0 0 24px #4aa8ff33}
+.quote{border-left:3px solid var(--amber);padding:4px 0 4px 16px;margin:14px 0;font-style:italic;color:var(--ink2);max-width:72ch}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:820px){.cols{grid-template-columns:1fr}}
+.col{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font:14px/1.5 var(--sans)}
+.col h4{margin:0 0 8px;font:600 12px var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.col.e h4{color:var(--green)} .col.v h4{color:var(--amber)} .col.o h4{color:#c9a3ff}
+.col ul{padding-left:18px;margin:0}
+footer.tabfoot{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font:12.5px var(--sans);color:var(--ink3);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+footer.tabfoot button{all:unset;cursor:pointer;color:var(--ice);font:12.5px var(--sans)}
+footer.tabfoot button:hover{text-decoration:underline}
+.toggle{display:inline-flex;align-items:center;gap:8px;font:13px var(--sans);color:var(--ink2);cursor:pointer;user-select:none;margin:0 0 8px}
+.toggle input{accent-color:var(--cher)}
+ol.src{font:14px/1.55 var(--sans);padding-left:0;list-style:none;max-width:none}
+ol.src li{padding:6px 0;border-bottom:1px solid var(--line)}
+ol.src .k{font:600 12px var(--mono);color:var(--cher);display:inline-block;min-width:96px}
+.verify{font:11px var(--mono);color:var(--amber)}
+svg text{font-family:var(--sans)}
+svg .mono{font-family:var(--mono)}
+.tip{position:fixed;z-index:50;max-width:280px;background:#132232;border:1px solid var(--line2);border-radius:8px;padding:8px 10px;
+  font:13px/1.45 var(--sans);color:var(--ink);pointer-events:none;opacity:0;transition:opacity .12s}
+mi{text-transform:none;font-style:italic}
+@media(max-width:560px){figure{overflow-x:auto}figure svg{min-width:640px}figure canvas{min-width:640px}.grid2>*{min-width:0}
+.eq{text-align:left;background-image:linear-gradient(to left,rgba(74,168,255,.18),transparent 28px);background-attachment:local,scroll}
+.eq::after{content:"scroll →";display:block;font:11px var(--mono);color:var(--ink3);margin-top:6px}}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="kicker">Nobel Prize in Physics · 2026 · Explainer</div>
+  <h1>The 2026 Nobel Prize in Physics: IceCube and the high-energy neutrino sky</h1>
+  <p class="sub">Francis Halzen, sole laureate, 6 Oct 2026</p>
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button role="tab" data-t="t1"><span class="n">01</span>The prize</button>
+    <button role="tab" data-t="t2"><span class="n">02</span>Neutrinos 101</button>
+    <button role="tab" data-t="t3"><span class="n">03</span>Cosmic accelerators</button>
+    <button role="tab" data-t="t4"><span class="n">04</span>The detector</button>
+    <button role="tab" data-t="t5"><span class="n">05</span>Reading an event</button>
+    <button role="tab" data-t="t6"><span class="n">06</span>The discovery</button>
+    <button role="tab" data-t="t7"><span class="n">07</span>Where they come from</button>
+    <button role="tab" data-t="t8"><span class="n">08</span>What's next &amp; sources</button>
+  </nav>
+</header>
+<main>
+<!-- ============ TAB 1 ============ -->
+<section class="tab" id="t1" role="tabpanel">
+<h2>The prize</h2>
+<p class="take"><b>Takeaway</b>Halzen won for turning a cubic kilometre of Antarctic ice into a telescope, and using it to prove that the universe sends us neutrinos with a billion times the energy of anything from the Sun.</p>
+
+<p>The Royal Swedish Academy of Sciences awarded the whole prize to <b>Francis Halzen</b> (University of Wisconsin–Madison) “for decisive contributions to the IceCube Neutrino Observatory and the discovery of high-energy neutrinos of astrophysical origin” <cite><a href="#src-PR">[PR]</a></cite>. <span class="tag est">Established</span></p>
+<p>Halzen was born in 1944 in Tienen, Belgium, and earned his PhD at KU Leuven in 1969 <cite><a href="#src-PR">[PR]</a></cite>. In June 1988 he co-wrote, with J. Learned, the first proposal to use ice as both the target and the light-producing medium. He drove the AMANDA prototype and led IceCube as principal investigator from its 1999 NSF proposal onward <cite><a href="#src-SB">[SB]</a></cite>. The IceCube collaboration itself is about 450 people at 58 institutions in 14 countries <cite><a href="#src-SB">[SB]</a></cite>.</p>
+<p>The committee was careful about what has <em>not</em> been found. No single point source is established. A small fraction of the flux comes from our own Milky Way, and most comes from extragalactic sources nobody has yet pinned down <cite><a href="#src-SB">[SB]</a></cite>. <span class="tag open">Open</span></p>
+<div class="quote">“His tenacity and scientific vision has paved the way for a new kind of astronomy.” Mark Pearce, Chair of the Nobel Committee for Physics <cite><a href="#src-PR">[PR]</a></cite></div>
+
+<figure>
+<svg viewBox="0 0 1000 300" role="img" aria-label="Timeline of neutrino Nobel prizes from 1930 to 2026 with an energy scale from MeV to PeV">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#2a3d50"/><stop offset=".8" stop-color="#4aa8ff"/><stop offset="1" stop-color="#ffb547"/></linearGradient>
+  </defs>
+  <!-- axis: 1925..2030 -> 40..960 ; x = 40 + (y-1925)*8.762 -->
+  <line x1="40" y1="120" x2="960" y2="120" stroke="url(#g1)" stroke-width="3"/>
+  <g font-size="12" fill="#a9b8c6">
+    <!-- 1930 -->
+    <g transform="translate(84,120)"><circle r="6" fill="#101a24" stroke="#9fd8ff" stroke-width="2"/>
+      <line y1="-11" y2="-44" stroke="#2a3d50"/><text y="-74" text-anchor="middle" fill="#e6edf3" font-weight="600" font-size="15">1930</text>
+      <text y="-56" text-anchor="middle">Pauli postulates ν</text></g>
+    <!-- 1956 -->
+    <g transform="translate(312,120)"><circle r="6" fill="#101a24" stroke="#9fd8ff" stroke-width="2"/>
+      <line y1="8" y2="40" stroke="#2a3d50"/><text y="60" text-anchor="middle" fill="#e6edf3" font-weight="600" font-size="15">1956</text>
+      <text y="78" text-anchor="middle">Cowan &amp; Reines: reactor ν</text><text y="94" text-anchor="middle" fill="#6f8293">Nobel 1995</text></g>
+    <!-- 1988 -->
+    <g transform="translate(592,120)"><circle r="6" fill="#101a24" stroke="#9fd8ff" stroke-width="2"/>
+      <line y1="-11" y2="-44" stroke="#2a3d50"/><text y="-74" text-anchor="middle" fill="#e6edf3" font-weight="600" font-size="15">1988</text>
+      <text y="-56" text-anchor="middle">Nobel: the muon neutrino</text>
+      <text y="-90" text-anchor="middle" fill="#6f8293" font-size="11">Lederman, Schwartz, Steinberger</text></g>
+    <!-- 2002 -->
+    <g transform="translate(715,120)"><circle r="6" fill="#101a24" stroke="#9fd8ff" stroke-width="2"/>
+      <line y1="8" y2="40" stroke="#2a3d50"/><text y="60" text-anchor="middle" fill="#e6edf3" font-weight="600" font-size="15">2002</text>
+      <text y="78" text-anchor="middle">Davis &amp; Koshiba</text><text y="94" text-anchor="middle" fill="#6f8293">solar ν, SN 1987A</text></g>
+    <!-- 2015 -->
+    <g transform="translate(829,120)"><circle r="6" fill="#101a24" stroke="#9fd8ff" stroke-width="2"/>
+      <line y1="-11" y2="-44" stroke="#2a3d50"/><text y="-74" text-anchor="middle" fill="#e6edf3" font-weight="600" font-size="15">2015</text>
+      <text y="-56" text-anchor="middle">Kajita &amp; McDonald</text><text y="-90" text-anchor="middle" fill="#6f8293" font-size="11">oscillations: ν have mass</text></g>
+    <!-- 2026 -->
+    <g transform="translate(925,120)"><circle r="10" fill="#ffb547"/><circle r="17" fill="none" stroke="#ffb547" stroke-opacity=".4"/>
+      <line y1="12" y2="40" stroke="#ffb547"/><text y="60" text-anchor="middle" fill="#ffb547" font-weight="700" font-size="16">2026</text>
+      <text y="78" text-anchor="middle" fill="#ffd394">Halzen</text><text y="94" text-anchor="middle" fill="#ffd394">PeV astrophysical ν</text></g>
+  </g>
+  <!-- energy scale -->
+  <g transform="translate(0,250)">
+    <text x="40" y="-14" font-size="11" fill="#6f8293" class="mono" letter-spacing="1.5">NEUTRINO ENERGY STUDIED</text>
+    <line x1="40" y1="10" x2="960" y2="10" stroke="#2a3d50"/>
+    <rect x="40" y="2" width="180" height="16" rx="3" fill="#9fd8ff22" stroke="#9fd8ff66"/>
+    <text x="130" y="14" text-anchor="middle" font-size="11" fill="#9fd8ff" class="mono">MeV · Sun, supernova</text>
+    <rect x="780" y="2" width="180" height="16" rx="3" fill="#ffb54722" stroke="#ffb54788"/>
+    <text x="870" y="14" text-anchor="middle" font-size="11" fill="#ffb547" class="mono">PeV · IceCube</text>
+    <path d="M230 10 H770" stroke="#a9b8c6" stroke-dasharray="3 5"/><path d="M762 5 L772 10 L762 15" fill="none" stroke="#a9b8c6"/>
+    <text x="500" y="5" text-anchor="middle" font-size="14" fill="#e6edf3" font-weight="600">× 10⁹</text>
+  </g>
+</svg>
+<figcaption><span class="fn">FIG 1</span>Neutrino physics at the Nobel podium. The 2026 prize moves the field from MeV neutrinos (Sun, supernovae) to PeV neutrinos from outside the Galaxy, a factor of a billion in energy. Dates from <cite><a href="#src-SB">[SB]</a></cite>.<span class="sch">Schematic spacing</span></figcaption>
+</figure>
+</section>
+
+<!-- ============ TAB 2 ============ -->
+<section class="tab" id="t2" role="tabpanel">
+<h2>Neutrinos 101</h2>
+<p class="take"><b>Takeaway</b>Neutrinos barely interact with anything. That makes them perfect messengers and terrible to catch.</p>
+
+<p>A <span class="term" data-def="Electrically neutral elementary particle with sub-eV mass that feels only the weak force and gravity.">neutrino</span> <span class="def">(an electrically neutral elementary particle with sub-eV mass)</span> feels only the <span class="term" data-def="The force behind radioactive beta decay, carried by the heavy W and Z bosons.">weak interaction</span> <span class="def">(the force behind radioactive beta decay, carried by the heavy W and Z bosons)</span> and gravity. There are three <span class="term" data-def="The three neutrino types, named for the charged lepton each produces when it interacts.">flavours</span>, ν<sub>e</sub>, ν<sub>μ</sub> and ν<sub>τ</sub>, named for the charged lepton (electron, muon, tau) each one produces when it interacts. Each flavour is a quantum superposition of three mass states, so a neutrino changes flavour as it travels. This is called <span class="term" data-def="Flavour change during travel, because each flavour is a superposition of mass states.">oscillation</span> <cite><a href="#src-SB">[SB]</a></cite>.</p>
+
+<h3>Why that makes a great messenger</h3>
+<p>Astronomy has three other carriers from the high-energy sky, and each has a flaw <cite><a href="#src-SB">[SB]</a></cite>:</p>
+<ul>
+<li><span class="term" data-def="Charged particles, mostly protons and helium nuclei, arriving from space.">Charged cosmic rays</span> get bent by magnetic fields, so they no longer point back to where they came from.</li>
+<li><b>Gamma rays</b> get absorbed in dense sources and, over cosmic distances, by background light (the CMB and the extragalactic background light). Electrons can also make them, so seeing gamma rays doesn't prove protons are being accelerated.</li>
+<li><b>Neutrinos</b> are neutral and almost never absorbed, so they point straight back and escape from the densest places. A neutrino detection means hadrons (protons, nuclei) were accelerated.</li>
+</ul>
+
+<figure>
+<svg viewBox="0 0 1000 330" role="img" aria-label="A source on the left emits a cosmic ray deflected by magnetic fields, a gamma ray absorbed by background photons, and a neutrino travelling straight to Earth">
+  <defs>
+    <radialGradient id="src"><stop offset="0" stop-color="#fff2d6"/><stop offset=".35" stop-color="#ffb547"/><stop offset="1" stop-color="#ffb54700"/></radialGradient>
+    <radialGradient id="earth"><stop offset="0" stop-color="#4aa8ff"/><stop offset="1" stop-color="#173a5c"/></radialGradient>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker>
+  </defs>
+  <circle cx="90" cy="165" r="70" fill="url(#src)"/>
+  <text x="90" y="268" text-anchor="middle" font-size="13" fill="#a9b8c6">Cosmic accelerator</text>
+  <circle cx="910" cy="165" r="38" fill="url(#earth)" stroke="#9fd8ff55"/>
+  <text x="910" y="230" text-anchor="middle" font-size="13" fill="#a9b8c6">Earth</text>
+  <!-- magnetic field lines -->
+  <g stroke="#7c6cff" stroke-opacity=".35" fill="none">
+    <path d="M300 20 C340 80,260 120,320 170"/><path d="M380 20 C420 80,340 120,400 170"/><path d="M460 20 C500 80,420 120,480 170"/>
+  </g>
+  <text x="390" y="16" text-anchor="middle" font-size="11" fill="#9b8fff" class="mono">magnetic fields</text>
+  <!-- cosmic ray -->
+  <path d="M150 120 C230 60,280 110,330 70 S420 40,450 100 S540 150,600 50 S700 10,760 30" stroke="#ff6b5e" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
+  <text x="770" y="34" font-size="13" fill="#ff8f85" font-weight="600">cosmic ray</text>
+  <text x="770" y="52" font-size="12" fill="#a9b8c6">bent by fields: points nowhere</text>
+  <!-- gamma ray -->
+  <g fill="#9fd8ff" fill-opacity=".25">
+    <circle cx="520" cy="165" r="3"/><circle cx="545" cy="150" r="2.5"/><circle cx="560" cy="180" r="3"/><circle cx="585" cy="160" r="2"/><circle cx="535" cy="190" r="2"/><circle cx="600" cy="140" r="2.5"/><circle cx="610" cy="185" r="3"/><circle cx="575" cy="135" r="2"/><circle cx="630" cy="165" r="2.5"/><circle cx="505" cy="140" r="2"/>
+  </g>
+  <text x="570" y="215" text-anchor="middle" font-size="11" fill="#6f8293" class="mono">CMB / background light</text>
+  <path d="M160 165 L540 165" stroke="#ffb547" stroke-width="2.5" stroke-dasharray="10 4"/>
+  <g transform="translate(556,165)" stroke="#ff6b5e" stroke-width="3.5"><line x1="-10" y1="-10" x2="10" y2="10"/><line x1="10" y1="-10" x2="-10" y2="10"/></g>
+  <text x="330" y="152" font-size="13" fill="#ffc979" font-weight="600">gamma ray</text>
+  <text x="652" y="170" font-size="12" fill="#a9b8c6">absorbed, and electrons can make it too</text>
+  <!-- neutrino -->
+  <path d="M155 230 C400 268,650 268,875 190" stroke="#5fd39a" stroke-width="3" fill="none" marker-end="url(#ah)"/>
+  <text x="430" y="290" font-size="13" fill="#5fd39a" font-weight="600">neutrino</text>
+  <text x="500" y="290" font-size="12" fill="#a9b8c6">straight line, unabsorbed: points back, and proves protons</text>
+</svg>
+<figcaption><span class="fn">FIG 2</span>Why neutrinos. Of the three carriers from the high-energy sky, only the neutrino keeps its direction and escapes from dense sources. Physics from <cite><a href="#src-SB">[SB]</a></cite>.<span class="sch">Schematic</span></figcaption>
+</figure>
+
+<h3>Why it's hard to catch</h3>
+<p>At 1 PeV (10<sup>15</sup> eV) the neutrino–nucleon <span class="term" data-def="Effective target area per nucleon; probability of interaction is n·σ·L.">cross-section</span> <span class="def">(the effective target area each nucleon presents)</span> is about σ ~ 10<sup>−33</sup> cm² <cite><a href="#src-SB">[SB]</a></cite>. Ice has a nucleon density n ≈ 0.92 g/cm³ × 6.0×10²³ g⁻¹ ≈ 5.5×10²³ cm⁻³, so the mean free path is</p>
+<div class="eq">
+<math display="block"><mi>λ</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mi>n</mi><mi>σ</mi></mrow></mfrac><mo>≈</mo><mn>1.8</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mtext>&#xA0;cm</mtext><mo>≈</mo><mn>18,000</mn><mtext>&#xA0;km</mtext></math>
+<span class="note">≈ our estimate, order of magnitude, from [SB] inputs</span>
+</div>
+<p>That's longer than Earth's diameter (12,742 km), which is also why PeV neutrinos coming up through the Earth get absorbed. A PeV neutrino crossing 1 km of ice has roughly a 1-in-18,000 chance of interacting <span class="est-n">≈ our estimate</span>. Combine that with an astrophysical flux that falls steeply with energy, roughly ∝ E<sup>−2.5</sup>, and you need a <b>cubic kilometre</b> of detector to collect of order 100 astrophysical events a year <cite><a href="#src-SB">[SB]</a></cite>.</p>
+</section>
+<!-- ============ TAB 3 ============ -->
+<section class="tab" id="t3" role="tabpanel">
+<h2>Cosmic accelerators</h2>
+<p class="take"><b>Takeaway</b>Neutrinos are the by-product that proves a source accelerates protons, and their energy ties them to gamma rays and cosmic rays.</p>
+
+<p><span class="term" data-def="High-energy charged particles from space, mostly protons and helium nuclei.">Cosmic rays</span> were found by Hess in 1912. They are mostly protons and helium nuclei, and reach about 10<sup>20</sup> eV, compared with 7 TeV per beam at the LHC <cite><a href="#src-SB">[SB]</a></cite>. Their energy spectrum is a broken power law. There's a <span class="term" data-def="Steepening of the cosmic-ray spectrum at a few PeV; below it sources are Galactic.">knee</span> at a few PeV (below it, the sources are Galactic, probably supernova remnants) and an <span class="term" data-def="Flattening at a few EeV; above it cosmic rays are extragalactic.">ankle</span> at a few EeV (above it, the flux is extragalactic, about one particle per km² per year). Above about 50 EeV comes the <span class="term" data-def="Cutoff where cosmic rays lose energy colliding with CMB photons.">GZK cutoff</span>, where cosmic rays lose energy on CMB photons <cite><a href="#src-SB">[SB]</a></cite>.</p>
+<p>Particles gain energy by bouncing back and forth across shock fronts, which is called <span class="term" data-def="Energy gain from repeated crossings of a shock front, e.g. at AGN jet termination shocks.">first-order Fermi acceleration</span>. The <span class="term" data-def="A source must be large and magnetised enough to confine a particle until it reaches a given energy.">Hillas criterion</span> says a source must be big and magnetised enough to hold on to a particle until it reaches that energy <cite><a href="#src-SB">[SB]</a></cite>.</p>
+
+<div class="grid2">
+<figure style="margin-top:0">
+<svg viewBox="0 0 460 300" role="img" aria-label="Schematic log-log cosmic ray spectrum with knee, ankle, GZK cutoff and LHC beam marker">
+  <line x1="50" y1="20" x2="50" y2="260" stroke="#2a3d50"/><line x1="50" y1="260" x2="440" y2="260" stroke="#2a3d50"/>
+  <text x="20" y="140" transform="rotate(-90 20 140)" text-anchor="middle" font-size="12" fill="#6f8293">flux (log)</text>
+  <text x="245" y="285" text-anchor="middle" font-size="12" fill="#6f8293">energy per particle (log)</text>
+  <path d="M60 40 L230 120 L340 210 L385 228 Q405 236 420 256" stroke="#9fd8ff" stroke-width="2.5" fill="none"/>
+  <g font-size="12" fill="#e6edf3">
+    <circle cx="230" cy="120" r="4" fill="#ffb547"/><text x="238" y="112">knee · few PeV</text>
+    <circle cx="340" cy="210" r="4" fill="#ffb547"/><text x="330" y="232" text-anchor="end">ankle · few EeV</text>
+    <circle cx="398" cy="238" r="4" fill="#ff6b5e"/><text x="388" y="262" text-anchor="end" fill="#ff8f85">GZK · &gt;50 EeV</text>
+  </g>
+  <line x1="150" y1="30" x2="150" y2="260" stroke="#5fd39a" stroke-dasharray="4 4"/>
+  <text x="156" y="44" font-size="11" fill="#5fd39a" class="mono">LHC beam 7 TeV</text>
+  <text x="100" y="230" font-size="11" fill="#6f8293">Galactic</text><text x="290" y="160" font-size="11" fill="#6f8293"></text>
+  <text x="372" y="190" font-size="11" fill="#6f8293">extragalactic</text>
+</svg>
+<figcaption><span class="fn">FIG 3B</span>The cosmic-ray spectrum and its features. <cite><a href="#src-SB">[SB]</a></cite><span class="sch">Schematic, no axis values</span></figcaption>
+</figure>
+<div>
+<h3 style="margin-top:0">From protons to neutrinos</h3>
+<p>When those protons hit gas (pp) or photons (pγ), they make <span class="term" data-def="Light mesons; neutral pions decay to photons, charged pions to muons and neutrinos.">pions</span> <cite><a href="#src-SB">[SB]</a></cite>:</p>
+<div class="eq" style="font-size:16px">
+<math display="block"><mi>p</mi><mo>+</mo><mi>p</mi><mo>→</mo><msup><mi>π</mi><mn>0</mn></msup><mo>,</mo><msup><mi>π</mi><mo>±</mo></msup><mo>+</mo><mi>X</mi></math>
+<math display="block"><mi>p</mi><mo>+</mo><mi>γ</mi><mo>→</mo><msup><mi>Δ</mi><mo>+</mo></msup><mo>(</mo><mn>1232</mn><mo>)</mo><mo>→</mo><mi>p</mi><msup><mi>π</mi><mn>0</mn></msup><mtext>&#xA0;or&#xA0;</mtext><mi>n</mi><msup><mi>π</mi><mo>+</mo></msup></math>
+<math display="block"><msup><mi>π</mi><mn>0</mn></msup><mo>→</mo><mi>γ</mi><mi>γ</mi><mspace width="1.5em"/><msup><mi>π</mi><mo>+</mo></msup><mo>→</mo><msup><mi>μ</mi><mo>+</mo></msup><msub><mi>ν</mi><mi>μ</mi></msub><mo>,</mo><mspace width=".6em"/><msup><mi>μ</mi><mo>+</mo></msup><mo>→</mo><msup><mi>e</mi><mo>+</mo></msup><msub><mi>ν</mi><mi>e</mi></msub><msub><mover><mi>ν</mi><mo>‾</mo></mover><mi>μ</mi></msub></math>
+</div>
+<p>So every hadronic accelerator makes gamma rays and neutrinos together.</p>
+</div>
+</div>
+
+<p>Their energy fluxes are linked, with the neutrino side counting all flavours <cite><a href="#src-SB">[SB]</a>, <a href="#src-HK">[HK]</a></cite>:</p>
+<div class="eq">
+<math display="block"><msubsup><mi>E</mi><mi>γ</mi><mn>2</mn></msubsup><mfrac><mrow><mi>d</mi><msub><mi>N</mi><mi>γ</mi></msub></mrow><mrow><mi>d</mi><msub><mi>E</mi><mi>γ</mi></msub></mrow></mfrac><mo>≈</mo><mfrac><mn>4</mn><mrow><mn>3</mn><msub><mi>K</mi><mi>π</mi></msub></mrow></mfrac><msubsup><mi>E</mi><mi>ν</mi><mn>2</mn></msubsup><msub><mrow><mfrac><mrow><mi>d</mi><msub><mi>N</mi><mi>ν</mi></msub></mrow><mrow><mi>d</mi><msub><mi>E</mi><mi>ν</mi></msub></mrow></mfrac><mo stretchy="true">|</mo></mrow><mrow><msub><mi>E</mi><mi>ν</mi></msub><mo>=</mo><msub><mi>E</mi><mi>γ</mi></msub><mo>/</mo><mn>2</mn></mrow></msub><mo>,</mo><mspace width="1em"/><msub><mi>K</mi><mi>π</mi></msub><mo>≈</mo><mn>2</mn><mtext>&#xA0;(pp),&#xA0;</mtext><mo>≈</mo><mn>1</mn><mtext>&#xA0;(pγ)</mtext></math>
+<span class="note">E<sub>ν</sub> side summed over all neutrino flavours · prefactor 4/(3K<sub>π</sub>) checked against [SB] p. 4</span>
+</div>
+<p>A rule of thumb: in photoproduction the pion takes about 20% of the proton's energy, a gamma ray about 1/10, and a neutrino about 1/20. So PeV–EeV protons give tens-of-TeV to tens-of-PeV neutrinos, which is exactly IceCube's range <cite><a href="#src-SB">[SB]</a></cite>. Pion decay produces flavours in the ratio ν<sub>e</sub>:ν<sub>μ</sub>:ν<sub>τ</sub> ≈ 1:2:0. Oscillation over cosmic distances evens that out to about 1:1:1 by the time they reach Earth (standard physics, not stated in [SB]).</p>
+
+<figure>
+<svg viewBox="0 0 1000 360" role="img" aria-label="Source mechanism: a proton hits a target photon or proton, producing neutral pions that decay to gamma rays and charged pions that decay to muons and neutrinos; inset shows flavour ratio 1:2:0 at source becoming 1:1:1 at Earth">
+  <defs><marker id="ah3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker>
+  <radialGradient id="hit"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#ffb547"/><stop offset="1" stop-color="#ffb54700"/></radialGradient></defs>
+  <!-- proton -->
+  <line x1="30" y1="180" x2="245" y2="180" stroke="#ff6b5e" stroke-width="3" marker-end="url(#ah3)"/>
+  <circle cx="40" cy="180" r="12" fill="#ff6b5e"/><text x="40" y="185" text-anchor="middle" font-size="13" font-weight="700" fill="#070b10">p</text>
+  <text x="70" y="166" font-size="13" fill="#ff8f85">proton, energy E</text>
+  <!-- target -->
+  <circle cx="270" cy="180" r="38" fill="url(#hit)"/>
+  <text x="270" y="240" text-anchor="middle" font-size="12" fill="#a9b8c6">target: γ (pγ) or p (pp)</text>
+  <text x="270" y="256" text-anchor="middle" font-size="12" fill="#6f8293">via Δ⁺(1232) in pγ</text>
+  <!-- pi0 branch -->
+  <path d="M295 160 L420 85" stroke="#9fd8ff" stroke-width="2.2" marker-end="url(#ah3)"/>
+  <text x="430" y="82" font-size="15" fill="#9fd8ff" font-weight="600">π⁰</text>
+  <path d="M460 78 L620 40" stroke="#ffb547" stroke-width="2" stroke-dasharray="7 4" marker-end="url(#ah3)"/>
+  <path d="M460 84 L620 110" stroke="#ffb547" stroke-width="2" stroke-dasharray="7 4" marker-end="url(#ah3)"/>
+  <text x="630" y="44" font-size="14" fill="#ffc979">γ</text><text x="630" y="116" font-size="14" fill="#ffc979">γ</text>
+  <text x="480" y="140" font-size="13" fill="#ffc979" font-weight="600">gamma rays, ~E/10 each</text>
+  <!-- pi+ branch -->
+  <path d="M295 200 L420 270" stroke="#9fd8ff" stroke-width="2.2" marker-end="url(#ah3)"/>
+  <text x="428" y="282" font-size="15" fill="#9fd8ff" font-weight="600">π⁺</text>
+  <path d="M462 276 L560 248" stroke="#c9a3ff" stroke-width="2.2" marker-end="url(#ah3)"/>
+  <text x="566" y="252" font-size="14" fill="#c9a3ff">μ⁺</text>
+  <path d="M462 284 L620 330" stroke="#5fd39a" stroke-width="2.4" marker-end="url(#ah3)"/>
+  <text x="628" y="338" font-size="14" fill="#5fd39a">ν<tspan font-size="10" dy="3">μ</tspan></text>
+  <path d="M592 244 L700 200" stroke="#ff8f85" stroke-width="1.6" marker-end="url(#ah3)"/><text x="706" y="202" font-size="13" fill="#ff8f85">e⁺</text>
+  <path d="M592 250 L720 250" stroke="#5fd39a" stroke-width="2.4" marker-end="url(#ah3)"/><text x="726" y="255" font-size="14" fill="#5fd39a">ν<tspan font-size="10" dy="3">e</tspan></text>
+  <path d="M592 256 L700 296" stroke="#5fd39a" stroke-width="2.4" marker-end="url(#ah3)"/><text x="706" y="304" font-size="14" fill="#5fd39a">ν̄<tspan font-size="10" dy="3">μ</tspan></text>
+  <text x="660" y="352" font-size="13" fill="#5fd39a" font-weight="600">neutrinos, ~E/20 each</text>
+  <!-- inset flavour pies -->
+  <g transform="translate(830,150)">
+    <rect x="-70" y="-120" width="210" height="250" rx="10" fill="#101a24" stroke="#1e2c3a"/>
+    <text x="35" y="-96" text-anchor="middle" font-size="11" fill="#6f8293" class="mono" letter-spacing="1">FLAVOUR RATIO</text>
+    <!-- source 1:2:0 -->
+    <g transform="translate(-10,-35)">
+      <circle r="32" fill="#c9a3ff"/>
+      <path d="M0 0 L0 -32 A32 32 0 0 0 -27.7 16 Z" fill="#9fd8ff"/>
+      <text y="52" text-anchor="middle" font-size="11" fill="#a9b8c6">source 1:2:0</text>
+    </g>
+    <path d="M30 -35 H62" stroke="#a9b8c6" marker-end="url(#ah3)"/>
+    <g transform="translate(100,-35)">
+      <circle r="32" fill="#c9a3ff"/>
+      <path d="M0 0 L0 -32 A32 32 0 0 0 -27.7 16 Z" fill="#9fd8ff"/>
+      <path d="M0 0 L-27.7 16 A32 32 0 0 0 27.7 16 Z" fill="#ffb547"/>
+      <text y="52" text-anchor="middle" font-size="11" fill="#a9b8c6">Earth ≈ 1:1:1</text>
+    </g>
+    <g font-size="11" transform="translate(-50,70)">
+      <rect width="10" height="10" fill="#9fd8ff"/><text x="14" y="9" fill="#a9b8c6">νₑ</text>
+      <rect x="50" width="10" height="10" fill="#c9a3ff"/><text x="64" y="9" fill="#a9b8c6">ν_μ</text>
+      <rect x="110" width="10" height="10" fill="#ffb547"/><text x="124" y="9" fill="#a9b8c6">ν_τ</text>
+    </g>
+    <text x="35" y="110" text-anchor="middle" font-size="10.5" fill="#6f8293">oscillation over cosmic distances</text>
+  </g>
+</svg>
+<figcaption><span class="fn">FIG 3</span>How a cosmic accelerator makes neutrinos. One collision feeds both channels: neutral pions become gamma rays, charged pions become neutrinos. Energy fractions are from photoproduction <cite><a href="#src-SB">[SB]</a></cite>. Flavour ratios are standard oscillation physics, not from [SB].<span class="sch">Schematic</span></figcaption>
+</figure>
+</section>
+
+<!-- ============ TAB 4 ============ -->
+<section class="tab" id="t4" role="tabpanel">
+<h2>The detector</h2>
+<p class="take"><b>Takeaway</b>IceCube is 5,160 light sensors frozen into a cubic kilometre of the clearest ice on Earth, 1.5 to 2.5 km under the South Pole.</p>
+
+<p>Seawater detectors came first and struggled. DUMAND, 4800 m deep off Hawaii, deployed one string in 1993, it failed, and the project was cancelled in 1995. Ocean bioluminescence and radioactive ⁴⁰K were background problems <cite><a href="#src-SB">[SB]</a></cite>. Halzen's bet was ice. Sensors lowered into Greenland boreholes in 1991 showed it was transparent enough. The AMANDA prototype (1993–2000) then found that air bubbles at 800–1000 m ruin the light, cutting the scattering length below 50 cm. So IceCube went deeper, where the ice has an absorption length of ~200 m and a scattering length of ~50 m <cite><a href="#src-SB">[SB]</a></cite>.</p>
+<p>IceCube was proposed in 1999, funded in March 2002, and its strings were deployed from 2005 to 2010 in holes melted with hot water. It was complete in 2011 and has run with more than 99% uptime since <cite><a href="#src-SB">[SB]</a></cite>.</p>
+
+<div class="grid2">
+<figure style="margin-top:0">
+<svg viewBox="0 0 470 560" role="img" aria-label="Cutaway of IceCube: surface with IceTop and lab, bubble zone 800 to 1000 m, instrumented band 1450 to 2450 m with strings of DOMs, Eiffel Tower for scale">
+  <defs><linearGradient id="icegrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a3348"/><stop offset="1" stop-color="#08131d"/></linearGradient></defs>
+  <!-- y = 40 + depth*0.18 -->
+  <rect x="70" y="40" width="390" height="500" fill="url(#icegrad)"/>
+  <line x1="70" y1="40" x2="460" y2="40" stroke="#e6edf3" stroke-width="1.5"/>
+  <!-- surface -->
+  <rect x="300" y="24" width="36" height="16" fill="#2a3d50" stroke="#a9b8c6"/><text x="318" y="18" text-anchor="middle" font-size="10" fill="#a9b8c6">lab</text>
+  <g fill="#9fd8ff"><rect x="150" y="34" width="10" height="6"/><rect x="200" y="34" width="10" height="6"/><rect x="250" y="34" width="10" height="6"/><rect x="380" y="34" width="10" height="6"/></g>
+  <text x="140" y="26" font-size="10.5" fill="#9fd8ff" class="mono">IceTop</text>
+  <!-- depth axis -->
+  <g font-size="10.5" fill="#6f8293" class="mono" text-anchor="end">
+    <text x="62" y="44">0 m</text><text x="62" y="134">500</text><text x="62" y="224">1000</text><text x="62" y="314">1500</text><text x="62" y="404">2000</text><text x="62" y="494">2500</text>
+  </g>
+  <g stroke="#1e2c3a"><line x1="66" y1="130" x2="70" y2="130"/><line x1="66" y1="220" x2="70" y2="220"/><line x1="66" y1="310" x2="70" y2="310"/><line x1="66" y1="400" x2="70" y2="400"/><line x1="66" y1="490" x2="70" y2="490"/></g>
+  <!-- bubble zone 800-1000 => 184..220 -->
+  <rect x="70" y="184" width="390" height="36" fill="#ff6b5e" fill-opacity=".12"/>
+  <g fill="#ffffff" fill-opacity=".25"><circle cx="100" cy="195" r="1.5"/><circle cx="140" cy="208" r="1.2"/><circle cx="190" cy="192" r="1.5"/><circle cx="260" cy="210" r="1.2"/><circle cx="330" cy="198" r="1.5"/><circle cx="400" cy="212" r="1.2"/><circle cx="430" cy="190" r="1.4"/></g>
+  <text x="265" y="206" text-anchor="middle" font-size="11.5" fill="#ff8f85">800–1000 m · too bubbly (AMANDA lesson)</text>
+  <!-- instrumented band 1450-2450 => 301..481 -->
+  <rect x="120" y="301" width="290" height="180" fill="#4aa8ff" fill-opacity=".08" stroke="#4aa8ff" stroke-opacity=".5" stroke-dasharray="4 3"/>
+  <g id="strings"></g>
+  <text x="265" y="500" text-anchor="middle" font-size="11.5" fill="#9fd8ff">instrumented: 1450–2450 m · ~1 km³ · ~1 Gt</text>
+  <!-- cables from surface -->
+  <g stroke="#2a3d50" stroke-width=".8" id="cables"></g>
+  <!-- Eiffel tower 330 m => 59.4 px, placed at band top -->
+  <g transform="translate(440,481)" fill="#ffb547" fill-opacity=".85">
+    <path d="M-12 0 L-2 -59.4 L2 -59.4 L12 0 L7 0 L1 -30 L-1 -30 L-7 0 Z"/>
+    <rect x="-9" y="-22" width="18" height="2.5"/><rect x="-5" y="-42" width="10" height="2"/>
+  </g>
+  <text x="440" y="406" text-anchor="middle" font-size="10" fill="#ffc979" stroke="#070b10" stroke-width="3" paint-order="stroke">Eiffel</text><text x="440" y="418" stroke="#070b10" stroke-width="3" paint-order="stroke" text-anchor="middle" font-size="10" fill="#ffc979">330 m</text>
+</svg>
+<figcaption><span class="fn">FIG 4</span>IceCube in cross-section, depth drawn to scale. Only about 10 of the 86 strings are shown. Geometry from <cite><a href="#src-SB">[SB]</a></cite>. No dust layer is drawn, because we found no source for its depth.<span class="sch">Strings schematic</span></figcaption>
+</figure>
+<div>
+<p>The geometry <cite><a href="#src-SB">[SB]</a></cite>: 86 vertical <span class="term" data-def="A vertical cable frozen into a melted hole, carrying 60 sensors.">strings</span>, each holding 60 <span class="term" data-def="Digital optical module: a pressure sphere with a downward-facing 25.4 cm photomultiplier that digitises its own signals.">DOMs</span> <span class="def">(digital optical modules: a pressure sphere holding a downward-facing 25.4 cm photomultiplier tube that digitises its own signals)</span>. DOMs sit every 17 m between 1450 and 2450 m deep. Strings sit on a hexagonal grid 125 m apart. That makes 5,160 DOMs <span class="est-n">≈ our count; [SB] says “over 5000”</span> watching about 1 km³, roughly a gigatonne of ice. <span class="term" data-def="Surface array of ice Cherenkov tanks measuring air showers from 300 TeV to 1 EeV.">IceTop</span>, on the surface, catches air showers from 300 TeV to 1 EeV and helps veto them.</p>
+
+<figure>
+<svg viewBox="0 0 400 260" role="img" aria-label="Top-down hexagonal grid of strings with 125 metre spacing">
+  <g id="hex"></g>
+  <g transform="translate(40,236)"><line x1="0" y1="0" x2="25" y2="0" stroke="#ffb547" stroke-width="2"/><text x="32" y="4" font-size="11" fill="#ffc979">125 m between strings</text></g>
+</svg>
+<figcaption><span class="fn">FIG 4 INSET</span>Top-down view: 86 strings on a hexagonal grid <cite><a href="#src-SB">[SB]</a></cite>.<span class="sch">Schematic</span></figcaption>
+</figure>
+</div>
+</div>
+
+<h3>How IceCube sees: Cherenkov light</h3>
+<p><span class="term" data-def="Light emitted when a charged particle moves faster than light's phase speed in the medium, v > c/n.">Cherenkov light</span> is emitted when a charged particle moves faster than light does <em>in the medium</em> (v &gt; c/n). It comes out as a cone of mostly UV light, much like a sonic boom. In water (n = 1.33) the threshold is 0.75c, which for a muon means 160 MeV <cite><a href="#src-SB">[SB]</a></cite>. Ice has n ≈ 1.31 <cite><a href="#src-SB">[SB]</a></cite>, so:</p>
+<div class="grid2">
+<div class="eq" style="align-self:center">
+<math display="block"><mi>cos</mi><msub><mi>θ</mi><mi>C</mi></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mi>n</mi><mi>β</mi></mrow></mfrac><mspace width="1em"/><mo>⇒</mo><mspace width="1em"/><msub><mi>θ</mi><mi>C</mi></msub><mo>≈</mo><msup><mn>40</mn><mo>∘</mo></msup></math>
+<span class="note">β → 1, n = 1.31 · ≈ our estimate</span>
+</div>
+<figure style="margin:0">
+<svg viewBox="0 0 420 220" role="img" aria-label="A charged particle track; the Cherenkov wavefront trails it and photons leave at 40 degrees to the track">
+  <defs><marker id="ah4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9fd8ff"/></marker>
+  <linearGradient id="cone" x1="1" x2="0"><stop offset="0" stop-color="#7c6cff" stop-opacity=".45"/><stop offset="1" stop-color="#4aa8ff" stop-opacity="0"/></linearGradient></defs>
+  <path d="M380 110 L253 -41 L253 261 Z" fill="url(#cone)"/>
+  <line x1="20" y1="110" x2="392" y2="110" stroke="#ff6b5e" stroke-width="2.5"/>
+  <circle cx="380" cy="110" r="5" fill="#ff6b5e"/>
+  <text x="24" y="100" font-size="12" fill="#ff8f85">charged particle, v &gt; c/n →</text>
+  <line x1="380" y1="110" x2="290" y2="2.7" stroke="#c9a3ff" stroke-width="2"/>
+  <line x1="380" y1="110" x2="290" y2="217.3" stroke="#c9a3ff" stroke-width="2"/>
+  <text x="230" y="30" font-size="11" fill="#c9a3ff">wavefront</text>
+  <!-- photons perpendicular to wavefront, 40deg to track -->
+  <g stroke="#9fd8ff" stroke-width="1.8" marker-end="url(#ah4)">
+    <line x1="335" y1="56.4" x2="381" y2="17.8"/><line x1="312" y1="29" x2="358" y2="-9.6"/>
+    <line x1="335" y1="163.6" x2="381" y2="202.2"/><line x1="312" y1="191" x2="358" y2="229.6"/>
+  </g>
+  <line x1="335" y1="163.6" x2="395" y2="163.6" stroke="#6f8293" stroke-dasharray="3 3"/>
+  <path d="M370 163.6 A35 35 0 0 1 361.8 186.1" fill="none" stroke="#ffb547" stroke-width="1.5"/>
+  <text x="372" y="190" font-size="13" fill="#ffc979">θ<tspan font-size="9" dy="3">C</tspan><tspan dy="-3"> ≈ 40°</tspan></text>
+  <text x="24" y="205" font-size="11" fill="#9fd8ff">photons → DOMs</text>
+</svg>
+<figcaption><span class="fn">FIG 4B</span>The Cherenkov cone. <span class="sch">Schematic</span></figcaption>
+</figure>
+</div>
+</section>
+<!-- ============ TAB 5 ============ -->
+<section class="tab" id="t5" role="tabpanel">
+<h2>Reading an event</h2>
+<p class="take"><b>Takeaway</b>A muon track gives you direction. A cascade gives you energy. Choosing which events to trust is the whole game.</p>
+
+<p>Above a TeV, a neutrino interacts by <span class="term" data-def="The neutrino scatters off a single quark inside a nucleon, shattering it.">deep inelastic scattering</span> <span class="def">(it smashes into a quark inside a nucleon)</span> <cite><a href="#src-SB">[SB]</a></cite>. In a <span class="term" data-def="W-boson exchange: the neutrino turns into its charged lepton.">charged-current</span> interaction (W exchange) it turns into its charged lepton plus a spray of hadrons, ν<sub>ℓ</sub> + N → ℓ + X. In a <span class="term" data-def="Z-boson exchange: the neutrino scatters away, leaving only a hadron shower.">neutral-current</span> one (Z exchange) it only leaves the hadron spray, ν + N → ν + X. Two shapes come out <cite><a href="#src-SB">[SB]</a></cite>:</p>
+
+<table class="cmp">
+<thead><tr><th></th><th>Track</th><th>Cascade</th></tr></thead>
+<tbody>
+<tr><td>Made by</td><td>CC ν<sub>μ</sub> (a muon)</td><td>CC ν<sub>e</sub>, ν<sub>τ</sub>, and NC of all flavours</td></tr>
+<tr><td>Looks like</td><td>a line crossing the array (km long at TeV)</td><td>a near-spherical blob (shower &lt; 10 m)</td></tr>
+<tr><td>Direction</td><td><b>0.3°</b> at 100 TeV</td><td><b>~5°</b> above 50 TeV</td></tr>
+<tr><td>Energy</td><td>within a factor of ~2</td><td><b>~8%</b> at 100 TeV</td></tr>
+</tbody></table>
+<p>Direction comes from photon arrival times, and energy from the number of photons <cite><a href="#src-SB">[SB]</a></cite>. A ν<sub>τ</sub> can make a <span class="term" data-def="Two cascades: one where the tau neutrino interacts, one where the tau decays.">double bang</span>: one cascade where it interacts and a second where the tau decays, about 50 m apart per PeV <cite><a href="#src-SB">[SB]</a></cite>.</p>
+
+<figure>
+<div class="grid2" style="gap:12px">
+  <svg id="evTrack" viewBox="0 0 440 400" role="img" aria-label="Simulated-style event display of a straight muon track"></svg>
+  <svg id="evCasc" viewBox="0 0 440 400" role="img" aria-label="Simulated-style event display of a spherical cascade"></svg>
+</div>
+<svg id="evLegend" viewBox="0 0 900 40" style="margin-top:6px"></svg>
+<figcaption><span class="fn">FIG 5</span>Track versus cascade. Each dot is a DOM. Lit DOMs are drawn bigger for more photons and coloured by arrival time. Left: “track depositing 2.6 PeV, from 11° below horizon.” Right: “cascade depositing 1.14 PeV.” Captions from <cite><a href="#src-SB">[SB]</a></cite> Fig. 4.<span class="sch">Schematic, not the real hit patterns</span></figcaption>
+</figure>
+
+<h3>Backgrounds</h3>
+<div class="grid2">
+<div>
+<p>Cosmic-ray air showers send down <span class="term" data-def="Muons made by cosmic rays hitting the atmosphere above the detector.">atmospheric muons</span> at about 3 kHz <cite><a href="#src-SB">[SB]</a></cite>. Two tricks remove them. One is to keep only <b>up-going</b> tracks, since the Earth stops muons, which cuts the rate to the µHz level. The other is to use the outer layer of sensors as a <span class="term" data-def="Outer sensors that tag particles entering from outside; kept events must start inside.">veto</span> and keep only events that start inside a ~500 Mt inner volume.</p>
+<p>That still leaves about 100,000 <span class="term" data-def="Neutrinos produced by cosmic rays in Earth's atmosphere.">atmospheric neutrinos</span> a year, with a steep spectrum ∝ E<sup>−3.7</sup>. The astrophysical spectrum, ∝ E<sup>−2.5</sup>, wins above a few tens of TeV and gives about 100 events a year <cite><a href="#src-SB">[SB]</a></cite>.</p>
+</div>
+<figure style="margin-top:0">
+<svg viewBox="0 0 400 300" role="img" aria-label="Veto concept: outer shell of the array tags an incoming muon, while a starting event begins inside">
+  <defs><marker id="ah5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+  <rect x="60" y="40" width="280" height="230" rx="6" fill="#ff6b5e" fill-opacity=".1" stroke="#ff6b5e" stroke-opacity=".5"/>
+  <rect x="100" y="80" width="200" height="150" rx="4" fill="#070b10" stroke="#4aa8ff" stroke-opacity=".6" stroke-dasharray="4 3"/>
+  <text x="200" y="60" text-anchor="middle" font-size="11" fill="#ff8f85" class="mono">VETO SHELL</text>
+  <text x="200" y="222" text-anchor="middle" font-size="11" fill="#9fd8ff" class="mono">~500 Mt inner volume</text>
+  <!-- incoming muon -->
+  <line x1="40" y1="0" x2="160" y2="170" stroke="#ff6b5e" stroke-width="2.2" marker-end="url(#ah5)"/>
+  <circle cx="80" cy="56" r="7" fill="#ff6b5e"/><circle cx="80" cy="56" r="13" fill="none" stroke="#ff6b5e" stroke-opacity=".5"/>
+  <text x="12" y="22" font-size="11.5" fill="#ff8f85">atmospheric μ: lights the shell → rejected</text>
+  <!-- starting event -->
+  <line x1="390" y1="150" x2="245" y2="150" stroke="#5fd39a" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <circle cx="230" cy="150" r="22" fill="#5fd39a" fill-opacity=".25"/><circle cx="230" cy="150" r="8" fill="#5fd39a"/>
+  <text x="252" y="196" font-size="11.5" fill="#5fd39a">starts inside → kept</text>
+  <text x="330" y="140" font-size="11" fill="#5fd39a">ν (invisible)</text>
+</svg>
+<figcaption><span class="fn">FIG 5B</span>The starting-event veto <cite><a href="#src-SB">[SB]</a></cite>.<span class="sch">Schematic</span></figcaption>
+</figure>
+</div>
+</section>
+
+<!-- ============ TAB 6 ============ -->
+<section class="tab" id="t6" role="tabpanel">
+<h2>The discovery</h2>
+<p class="take"><b>Takeaway</b>Two accidental PeV events in 2010–12 data (published 2013) opened the door. By 2014 the astrophysical signal was at 5.7σ, and it now spans 5 TeV to beyond 10 PeV.</p>
+
+<p>While searching data from May 2010 to May 2012 for much higher-energy (EeV) neutrinos, IceCube found two cascades at about 1.04 and 1.14 PeV, nicknamed Bert and Ernie (2010–12 data, published 2013) <cite><a href="#src-SB">[SB]</a>, <a href="#src-PRL2013">[PRL2013]</a>; nicknames from IceCube outreach</cite>. A dedicated search using the veto found 28 events from 30 TeV to 1.14 PeV, 21 cascades and 7 tracks <cite><a href="#src-S2013">[S2013]</a></cite>. Three years of data then ruled out a purely atmospheric origin at <b>5.7σ</b> <cite><a href="#src-PRL2014">[PRL2014]</a></cite>. Here σ means standard deviations, and 5σ is physics' discovery bar. <span class="tag est">Established</span></p>
+<p>The picture today <cite><a href="#src-SB">[SB]</a>, <a href="#src-SPEC26">[SPEC26]</a></cite> comes from a combined fit of 231,486 tracks and 10,569 cascades recorded between May 2010 and May 2021. Above ~30 TeV the spectrum is a power law, below that it flattens, and a single power law from 5 TeV to 10 PeV is rejected at &gt;4σ. The arrival directions are isotropic, as expected if most sources are far outside the Galaxy. The highest-energy IceCube event is <b>11.4 PeV</b>, recorded on 31 March 2019 and published in 2026.</p>
+<p>The neutrino energy flux is comparable to the gamma-ray and cosmic-ray fluxes, which <em>suggests</em> they share sources <span class="tag open">Open</span>. Seven tau neutrinos (20 TeV–1 PeV) rule out a zero astrophysical tau flux at 5σ, confirming that the flux has oscillated across cosmic distances <cite><a href="#src-TAU">[TAU]</a></cite> <span class="tag est">Established</span>.</p>
+
+<figure>
+<svg viewBox="0 0 900 420" role="img" aria-label="Schematic energy spectrum: steep atmospheric background, broken astrophysical power law with band crossing above it at a few tens of TeV, smaller Milky Way and NGC 1068 curves, markers at the 2012 PeV events and the 11.4 PeV event">
+  <!-- x = 80 + log10(E/TeV)*170 -->
+  <line x1="80" y1="30" x2="80" y2="370" stroke="#2a3d50"/><line x1="80" y1="370" x2="860" y2="370" stroke="#2a3d50"/>
+  <g font-size="12" fill="#a9b8c6" text-anchor="middle" class="mono">
+    <text x="80" y="390">1 TeV</text><text x="250" y="390">10 TeV</text><text x="420" y="390">100 TeV</text><text x="590" y="390">1 PeV</text><text x="760" y="390">10 PeV</text>
+  </g>
+  <g stroke="#1e2c3a"><line x1="250" y1="30" x2="250" y2="370"/><line x1="420" y1="30" x2="420" y2="370"/><line x1="590" y1="30" x2="590" y2="370"/><line x1="760" y1="30" x2="760" y2="370"/></g>
+  <text x="470" y="412" text-anchor="middle" font-size="12" fill="#6f8293">neutrino energy E (log)</text>
+  <text x="34" y="200" text-anchor="middle" font-size="12" fill="#6f8293" transform="rotate(-90 34 200)">E²Φ (log, no values)</text>
+  <!-- atmospheric: slope -1.7/decade -> 102 px/decade, through (331,200) -->
+  <path d="M80 49 L590 357" stroke="#a9b8c6" stroke-width="2.4" fill="none"/>
+  <text x="100" y="40" font-size="12.5" fill="#a9b8c6">atmospheric ν, ∝ E<tspan dy="-5" font-size="9">−3.7</tspan></text>
+  <!-- astrophysical band -->
+  <path id="astroBand" fill="#4aa8ff" fill-opacity=".18" d=""/>
+  <path id="astroLine" stroke="#4aa8ff" stroke-width="3" fill="none" d=""/>
+  <path id="astroExt" stroke="#4aa8ff" stroke-width="2" stroke-dasharray="5 4" fill="none" d=""/>
+  <text x="600" y="232" font-size="12.5" fill="#9fd8ff" font-weight="600">astrophysical ν, ∝ E<tspan dy="-5" font-size="9">−2.5</tspan><tspan dy="5"> above ~30 TeV</tspan></text>
+  <text x="880" y="30" text-anchor="end" font-size="11" fill="#6f8293">shaded: 68% band (shape only)</text>
+  <text x="140" y="190" font-size="11.5" fill="#9fd8ff">flattens below ~30 TeV</text>
+  <!-- crossover marker -->
+  <circle cx="331" cy="200" r="5" fill="none" stroke="#ffb547" stroke-width="2"/>
+  <text x="340" y="180" font-size="12" fill="#ffc979">crosses at a few tens of TeV</text>
+  <!-- sub-components -->
+  <path d="M80 300 C200 300,350 312,480 336 S600 360,640 366" stroke="#c9a3ff" stroke-width="2" fill="none"/>
+  <text x="440" y="318" font-size="11.5" fill="#c9a3ff">Milky Way</text>
+  <path d="M90 330 C140 326,200 330,250 344 S290 362,310 368" stroke="#5fd39a" stroke-width="2" fill="none"/>
+  <text x="96" y="322" font-size="11.5" fill="#5fd39a">NGC 1068 (1–10 TeV)</text>
+  <!-- events -->
+  <g id="specMarks"></g>
+</svg>
+<figcaption><span class="fn">FIG 6</span>The high-energy neutrino spectrum, in shape only. The astrophysical flux climbs above the steep atmospheric background at a few tens of TeV. The Milky Way and NGC 1068 add only small parts. Spectral indices and features from <cite><a href="#src-SB">[SB]</a>, <a href="#src-SPEC26">[SPEC26]</a></cite>.<span class="sch">Schematic, no flux values</span></figcaption>
+</figure>
+
+<figure>
+<svg viewBox="0 0 900 120" role="img" aria-label="Discovery timeline 2012 to 2026">
+  <line x1="60" y1="50" x2="840" y2="50" stroke="#2a3d50" stroke-width="2"/>
+  <g id="discStrip"></g>
+</svg>
+<figcaption><span class="fn">FIG 6B</span>From two lucky events to a measured spectrum. <cite><a href="#src-PRL2013">[PRL2013]</a> <a href="#src-S2013">[S2013]</a> <a href="#src-PRL2014">[PRL2014]</a> <a href="#src-TAU">[TAU]</a> <a href="#src-SPEC26">[SPEC26]</a></cite></figcaption>
+</figure>
+</section>
+<!-- ============ TAB 7 ============ -->
+<section class="tab" id="t7" role="tabpanel">
+<h2>Where they come from</h2>
+<p class="take"><b>Takeaway</b>The Milky Way is a confirmed but small source. Two active galaxies are strong evidence. Most of the flux is still unexplained.</p>
+
+<label class="toggle"><input type="checkbox" id="sigToggle"> Show significance (colour by σ, against the 5σ discovery line)</label>
+<figure style="margin-top:4px">
+<canvas id="sky" width="1000" height="520" aria-label="Schematic Mollweide sky map in Galactic coordinates with the Galactic plane, TXS 0506+056 and NGC 1068; click a feature to open its card"></canvas>
+<figcaption><span class="fn">FIG 7</span>The neutrino sky, in Galactic coordinates (Mollweide projection, Galactic centre in the middle). Click the plane or a marker to open its card. The faint dots are illustrative and are not real event positions. Marker positions are approximate, converted from the sources' catalogue coordinates.<span class="sch">Schematic</span></figcaption>
+</figure>
+
+<div class="cards">
+<div class="card" id="c-gal"><h4>The Milky Way <span class="tag est">Established</span></h4>
+4.5σ in 2023 <cite><a href="#src-GAL23">[GAL23]</a></cite>, and 5.7σ with 12 years of data in 2026 <cite><a href="#src-GAL26">[GAL26]</a>, arXiv preprint</cite>. The signal matches the gamma-ray glow cosmic rays make on interstellar gas. It is the first neutrino source above 5σ, but it is diffuse, with no point sources, and it is a small fraction of the total <cite><a href="#src-SB">[SB]</a></cite>.</div>
+<div class="card" id="c-txs"><h4>TXS 0506+056, a blazar <span class="tag evi">Evidence</span></h4>
+A <span class="term" data-def="An active galaxy whose relativistic jet points almost straight at us.">blazar</span> is an active galaxy whose jet points at us. On 22 Sep 2017 a ~290 TeV neutrino, IceCube-170922A, landed within 0.06° of it while it was flaring in gamma rays at about 7× its usual brightness. The alert went out within a minute, and telescopes worldwide followed up. The archive then showed a neutrino flare from Sep 2014 to Mar 2015 at 3.5σ <cite><a href="#src-SB">[SB]</a> <a href="#src-TXS-MM">[TXS-MM]</a> <a href="#src-TXS-ARCH">[TXS-ARCH]</a></cite>.</div>
+<div class="card" id="c-ngc"><h4>NGC 1068, a Seyfert galaxy <span class="tag evi">Evidence</span></h4>
+A <span class="term" data-def="An active galaxy with a bright, often obscured nucleus and no large jet.">Seyfert galaxy</span> is an active galaxy with a buried, jetless black hole, here about 15 million solar masses and 46 million light-years away. IceCube saw 79 neutrinos at 1–10 TeV, at 4.2σ. Gamma rays are far weaker than the neutrinos, so the neutrinos likely come from the hot <span class="term" data-def="Hot, dense region near the black hole where gamma rays are absorbed.">corona</span> near the black hole, where gamma rays get absorbed <cite><a href="#src-SB">[SB]</a> <a href="#src-NGC">[NGC]</a></cite>.</div>
+<div class="card" id="c-grb"><h4>Gamma-ray bursts <span class="tag out">Ruled out as dominant</span></h4>
+More than 1000 searches have found no neutrinos coincident with gamma-ray bursts <cite><a href="#src-SB">[SB]</a></cite>.</div>
+</div>
+<div class="quote">“Time will tell if these observations confirm AGNs as sources.” Nobel Committee for Physics <cite><a href="#src-SB">[SB]</a></cite></div>
+
+<figure>
+<svg id="sigBars" viewBox="0 0 900 290" role="img" aria-label="Significance bar chart: diffuse flux 5.7 sigma, Milky Way 5.7, tau 5, NGC 1068 4.2, TXS archival 3.5, against a 5 sigma discovery line"></svg>
+<figcaption><span class="fn">FIG 7B</span>How strong each claim is. Bars at or past the dashed line meet physics' 5σ discovery bar. <cite><a href="#src-PRL2014">[PRL2014]</a> <a href="#src-GAL26">[GAL26]</a> <a href="#src-TAU">[TAU]</a> <a href="#src-NGC">[NGC]</a> <a href="#src-TXS-ARCH">[TXS-ARCH]</a></cite></figcaption>
+</figure>
+</section>
+
+<!-- ============ TAB 8 ============ -->
+<section class="tab" id="t8" role="tabpanel">
+<h2>What it means, what's next</h2>
+<p class="take"><b>Takeaway</b>A new kind of astronomy exists. The next decade is about finding its sources, and using it as a particle collider that nature runs for free.</p>
+
+<div class="cols">
+<div class="col e"><h4>Established</h4><ul>
+<li>A diffuse astrophysical flux exists</li><li>It extends past 10 PeV</li><li>It is mostly extragalactic and isotropic</li><li>The Galaxy contributes, at 5.7σ</li><li>Astrophysical tau neutrinos, at 5σ</li><li>The spectrum is not a single power law (&gt;4σ)</li></ul></div>
+<div class="col v"><h4>Evidence</h4><ul><li>TXS 0506+056 (blazar)</li><li>NGC 1068 (Seyfert)</li></ul></div>
+<div class="col o"><h4>Open</h4><ul>
+<li>Which source populations dominate</li><li>AGN core or jet</li><li>pp or pγ</li><li>GRB contribution (none seen)</li><li>The prompt charm flux</li><li>The link to ultra-high-energy cosmic rays</li></ul></div>
+</div>
+
+<h3>What's next</h3>
+<p>The next step is telescopes bigger than a cubic kilometre: IceCube-Gen2 at the South Pole, KM3NeT in the Mediterranean, P-ONE off Vancouver Island, TRIDENT in the South China Sea, and Baikal-GVD <cite><a href="#src-SB">[SB]</a></cite>. IceCube's real-time alerts go out within a minute, which makes it a trigger for <span class="term" data-def="Observing one cosmic event with several carriers: neutrinos, light, and possibly gravitational waves.">multi-messenger astronomy</span> <span class="def">(observing one event with neutrinos, light, and possibly gravitational waves)</span> <cite><a href="#src-SB">[SB]</a></cite>.</p>
+<p><span class="tag open">Open</span> Neutrinos can also do particle physics at extreme energies. Earth's absorption of high-energy neutrinos could be used to measure cross-sections at collision energies beyond the LHC, and flavour ratios can be tested for new physics <cite><a href="#src-SB">[SB]</a></cite>.</p>
+
+<figure>
+<svg id="worldMap" viewBox="0 0 900 470" role="img" aria-label="Schematic world map with pins for IceCube at the South Pole, KM3NeT, P-ONE, TRIDENT and Baikal-GVD"></svg>
+<figcaption><span class="fn">FIG 8</span>Neutrino telescopes now and next <cite><a href="#src-SB">[SB]</a></cite>. Pin positions are approximate.<span class="sch">Schematic map</span></figcaption>
+</figure>
+
+<h3 id="sources">Sources</h3>
+<ol class="src">
+<li id="src-SB"><span class="k">[SB]</span>Nobel Committee for Physics, Scientific Background to the 2026 prize. <a href="https://www.nobelprize.org/uploads/2026/10/advanced-physicsprize2026.pdf" target="_blank" rel="noopener">nobelprize.org PDF</a> · <a href="https://www.kva.se/app/uploads/2026/10/nobel-physics-2026-scientific-background_34f71vieby.pdf" target="_blank" rel="noopener">kva.se mirror</a></li>
+<li id="src-PR"><span class="k">[PR]</span><a href="https://www.nobelprize.org/prizes/physics/2026/press-release/" target="_blank" rel="noopener">Press release, 6 Oct 2026</a></li>
+<li id="src-POP"><span class="k">[POP]</span><a href="https://www.nobelprize.org/uploads/2026/10/popular-physicsprize2026.pdf" target="_blank" rel="noopener">Popular science background</a></li>
+<li id="src-S2013"><span class="k">[S2013]</span>IceCube, Science 342 (2013) 1242856, the 28 events. <a href="https://doi.org/10.1126/science.1242856" target="_blank" rel="noopener">doi:10.1126/science.1242856</a></li>
+<li id="src-PRL2013"><span class="k">[PRL2013]</span>IceCube, Phys. Rev. Lett. 111 (2013) 021103, the first two PeV events <a href="https://doi.org/10.1103/PhysRevLett.111.021103" target="_blank" rel="noopener">doi:10.1103/PhysRevLett.111.021103</a></li>
+<li id="src-PRL2014"><span class="k">[PRL2014]</span>IceCube, Phys. Rev. Lett. 113 (2014) 101101, 5.7σ with three years of data <a href="https://doi.org/10.1103/PhysRevLett.113.101101" target="_blank" rel="noopener">doi:10.1103/PhysRevLett.113.101101</a></li>
+<li id="src-TXS-MM"><span class="k">[TXS-MM]</span>IceCube et al., Science 361 (2018) eaat1378, IceCube-170922A and TXS 0506+056 <a href="https://doi.org/10.1126/science.aat1378" target="_blank" rel="noopener">doi:10.1126/science.aat1378</a></li>
+<li id="src-TXS-ARCH"><span class="k">[TXS-ARCH]</span>IceCube, Science 361 (2018) 147, the 2014–15 archival flare <a href="https://doi.org/10.1126/science.aat2890" target="_blank" rel="noopener">doi:10.1126/science.aat2890</a></li>
+<li id="src-NGC"><span class="k">[NGC]</span>IceCube, Science 378 (2022) 538, NGC 1068 <a href="https://doi.org/10.1126/science.abg3395" target="_blank" rel="noopener">doi:10.1126/science.abg3395</a></li>
+<li id="src-GAL23"><span class="k">[GAL23]</span>IceCube, Science 380 (2023) 1338, the Galactic plane <a href="https://doi.org/10.1126/science.adc9818" target="_blank" rel="noopener">doi:10.1126/science.adc9818</a></li>
+<li id="src-GAL26"><span class="k">[GAL26]</span>IceCube, <a href="https://arxiv.org/abs/2607.25966" target="_blank" rel="noopener">arXiv:2607.25966</a>, the Galactic plane at 5.7σ <span class="tag open">Preprint</span> no journal version as of 7 Oct 2026</li>
+<li id="src-TAU"><span class="k">[TAU]</span>IceCube, Phys. Rev. Lett. 132 (2024) 151001, seven tau neutrinos <a href="https://doi.org/10.1103/PhysRevLett.132.151001" target="_blank" rel="noopener">doi:10.1103/PhysRevLett.132.151001</a></li>
+<li id="src-SPEC26"><span class="k">[SPEC26]</span>IceCube, Phys. Rev. Lett. 136 (2026) 121002 and Phys. Rev. D 113 (2026) 062002, the combined spectrum and the 11.4 PeV event <a href="https://doi.org/10.1103/2gh9-d4q7" target="_blank" rel="noopener">doi:10.1103/2gh9-d4q7</a> · <a href="https://doi.org/10.1103/4n6v-r7n4" target="_blank" rel="noopener">doi:10.1103/4n6v-r7n4</a></li>
+<li id="src-DET"><span class="k">[DET]</span>IceCube, JINST 12 (2017) P03012, the detector paper <a href="https://doi.org/10.1088/1748-0221/12/03/P03012" target="_blank" rel="noopener">doi:10.1088/1748-0221/12/03/P03012</a></li>
+<li id="src-HK"><span class="k">[HK]</span>Halzen &amp; Kheirandish, <a href="https://arxiv.org/abs/2202.00694" target="_blank" rel="noopener">arXiv:2202.00694</a>, multi-messenger energy relations</li>
+</ol>
+<p style="font:13px var(--sans);color:var(--ink3)">Numbers marked “≈ our estimate” are arithmetic from these sources. The nicknames Bert and Ernie come from IceCube outreach, not from [SB].</p>
+</section>
+</main>
+<div class="tip" id="tip"></div>
+<script>
+(function(){
+const NS="http://www.w3.org/2000/svg";
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+
+/* ---------- tabs ---------- */
+const tabs=$$('nav.tabs button'), panels=$$('section.tab');
+function show(id,push){
+  if(!document.getElementById(id))id='t1';
+  tabs.forEach(b=>{const on=b.dataset.t===id;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;});
+  panels.forEach(p=>p.classList.toggle('on',p.id===id));
+  if(push!==false)history.replaceState(null,'','#'+id);
+  if(id==='t7')drawSky();
+}
+tabs.forEach((b,i)=>{
+  b.addEventListener('click',()=>{show(b.dataset.t);window.scrollTo({top:0});});
+  b.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){const j=(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[j].focus();tabs[j].click();}
+  });
+});
+// footers
+panels.forEach((p,i)=>{
+  const f=document.createElement('footer');f.className='tabfoot';
+  const prev=i>0?`<button data-go="${panels[i-1].id}">← ${tabs[i-1].textContent.replace(/^\d+/,'')}</button>`:'<span></span>';
+  const next=i<panels.length-1?`<button data-go="${panels[i+1].id}">${tabs[i+1].textContent.replace(/^\d+/,'')} →</button>`:'<span></span>';
+  f.innerHTML=`${prev}<button data-src="1">Sources</button>${next}`;
+  p.appendChild(f);
+});
+document.addEventListener('click',e=>{
+  const go=e.target.closest('[data-go]');if(go){show(go.dataset.go);window.scrollTo({top:0});return;}
+  if(e.target.closest('[data-src]')){show('t8');document.getElementById('sources').scrollIntoView({behavior:'smooth'});return;}
+  const a=e.target.closest('a[href^="#src-"]');
+  if(a){e.preventDefault();const t=document.querySelector(a.getAttribute('href'));show('t8');
+    t.scrollIntoView({behavior:'smooth',block:'center'});t.style.background='#4aa8ff22';setTimeout(()=>t.style.background='',1600);}
+});
+
+/* ---------- tooltips ---------- */
+const tip=$('#tip');
+$$('.term').forEach(t=>{
+  t.tabIndex=0;
+  const on=e=>{tip.textContent=t.dataset.def||'';const r=t.getBoundingClientRect();
+    tip.style.left=Math.min(innerWidth-300,Math.max(8,r.left))+'px';tip.style.top=(r.bottom+8)+'px';tip.style.opacity=1;};
+  const off=()=>tip.style.opacity=0;
+  t.addEventListener('mouseenter',on);t.addEventListener('focus',on);t.addEventListener('mouseleave',off);t.addEventListener('blur',off);
+});
+
+/* ---------- Fig 4: strings + hex ---------- */
+(function(){
+  const g=$('#strings'),c=$('#cables');
+  for(let i=0;i<10;i++){const x=135+i*29;
+    el('line',{x1:x,y1:40,x2:x,y2:301},c);
+    el('line',{x1:x,y1:301,x2:x,y2:481,stroke:'#4aa8ff','stroke-opacity':.35},g);
+    for(let k=0;k<60;k++)el('circle',{cx:x,cy:301+k*(180/59),r:1.25,fill:'#9fd8ff'},g);}
+  const hex=$('#hex'),pts=[],s=18;
+  for(let q=-6;q<=6;q++)for(let r=-6;r<=6;r++){const x=s*(q+r/2),y=s*r*Math.sqrt(3)/2;pts.push([x,y,Math.hypot(x,y)]);}
+  pts.sort((a,b)=>a[2]-b[2]);
+  pts.slice(0,86).forEach(([x,y])=>el('circle',{cx:200+x,cy:146+y,r:3.5,fill:'#101a24',stroke:'#9fd8ff','stroke-width':1.5},hex));
+  el('text',{x:200,y:16,'text-anchor':'middle','font-size':11,fill:'#6f8293',class:'mono'},hex,'86 STRINGS · TOP VIEW');
+})();
+
+/* ---------- Fig 5: event displays ---------- */
+function timeColor(t){ // 0 early red -> 1 late blue
+  const stops=[[255,107,94],[255,181,71],[95,211,154],[74,168,255],[124,108,255]];
+  const x=Math.max(0,Math.min(.999,t))*(stops.length-1),i=Math.floor(x),f=x-i,a=stops[i],b=stops[i+1];
+  return `rgb(${a.map((v,k)=>Math.round(v+(b[k]-v)*f)).join(',')})`;}
+function rng(seed){return()=>((seed=Math.imul(seed^seed>>>15,1|seed)+0x6D2B79F5|0,(seed>>>0)/4294967296));}
+function eventDisplay(svg,kind){
+  const cols=12,rows=22,x0=40,y0=40,dx=33,dy=14.5,R=rng(kind==='track'?7:11);
+  el('rect',{x:20,y:20,width:400,height:360,rx:8,fill:'#070b10',stroke:'#1e2c3a'},svg);
+  for(let i=0;i<cols;i++)el('line',{x1:x0+i*dx,y1:y0-6,x2:x0+i*dx,y2:y0+(rows-1)*dy+6,stroke:'#1e2c3a'},svg);
+  const hits=[];
+  for(let i=0;i<cols;i++)for(let j=0;j<rows;j++){
+    const x=x0+i*dx,y=y0+j*dy;el('circle',{cx:x,cy:y,r:1.4,fill:'#2a3d50'},svg);
+    let d,t;
+    if(kind==='track'){ // line from (30,70) to (410,330)
+      const ax=30,ay=70,bx=410,by=330,vx=bx-ax,vy=by-ay,L=Math.hypot(vx,vy);
+      const u=((x-ax)*vx+(y-ay)*vy)/(L*L);d=Math.abs((x-ax)*vy-(y-ay)*vx)/L;t=u+d/900;
+      if(d<60&&R()<0.85-d/90)hits.push([x,y,Math.max(2,14*Math.exp(-d/22)),t]);
+    }else{
+      const cx=230,cy=200;d=Math.hypot(x-cx,y-cy);t=d/150;
+      if(d<150&&R()<0.95-d/180)hits.push([x,y,Math.max(2,18*Math.exp(-d/45)),t]);
+    }
+  }
+  hits.sort((a,b)=>b[2]-a[2]).forEach(([x,y,r,t])=>el('circle',{cx:x,cy:y,r:r,fill:timeColor(t),'fill-opacity':.85},svg));
+  if(kind==='track'){el('line',{x1:30,y1:70,x2:410,y2:330,stroke:'#e6edf3','stroke-opacity':.5,'stroke-dasharray':'4 4'},svg);}
+  el('text',{x:32,y:370,'font-size':13,fill:'#e6edf3','font-weight':600},svg,kind==='track'?'Track · direction to 0.3°':'Cascade · energy to ~8%');
+}
+eventDisplay($('#evTrack'),'track');eventDisplay($('#evCasc'),'cascade');
+(function(){const s=$('#evLegend');el('text',{x:0,y:24,'font-size':12,fill:'#a9b8c6'},s,'arrival time');
+  for(let i=0;i<60;i++)el('rect',{x:90+i*5,y:12,width:5,height:14,fill:timeColor(i/59)},s);
+  el('text',{x:90,y:40,'font-size':10.5,fill:'#6f8293'},s,'early');el('text',{x:390,y:40,'font-size':10.5,fill:'#6f8293','text-anchor':'end'},s,'late');
+  el('circle',{cx:470,cy:19,r:3,fill:'#a9b8c6'},s);el('circle',{cx:490,cy:19,r:7,fill:'#a9b8c6'},s);el('circle',{cx:516,cy:19,r:11,fill:'#a9b8c6'},s);
+  el('text',{x:536,y:24,'font-size':12,fill:'#a9b8c6'},s,'size = photons detected');})();
+
+/* ---------- Fig 6: spectrum ---------- */
+(function(){
+  const X=E=>80+Math.log10(E)*170; // E in TeV
+  const Y=E=>{const l=Math.log10(E/30);return l>=0?200+30*l:200-10*l;};
+  let line='',up=[],dn=[];
+  for(let k=0;k<=100;k++){const lE=k*4/100,E=Math.pow(10,lE),x=X(E),y=Y(E),w=10+6*Math.abs(Math.log10(E/100));
+    line+=(k?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);up.push([x,y-w]);dn.unshift([x,y+w]);}
+  $('#astroLine').setAttribute('d',line);
+  $('#astroBand').setAttribute('d','M'+up.concat(dn).map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join('L')+'Z');
+  const xe=X(11400);$('#astroExt').setAttribute('d',`M${X(10000)} ${Y(10000)} L${xe} ${Y(11400)}`);
+  const m=$('#specMarks');
+  [[1040,'#ffb547'],[1140,'#ffb547']].forEach(([E,c],i)=>el('circle',{cx:X(E),cy:Y(E),r:5,fill:c,stroke:'#070b10','stroke-width':1.5},m));
+  el('text',{x:X(1090),y:Y(1090)+58,'text-anchor':'middle','font-size':12,fill:'#ffc979',stroke:'#070b10','stroke-width':3,'paint-order':'stroke'},m,'Bert & Ernie (2010–12 data) · 1.04, 1.14 PeV');
+  el('path',{d:`M${xe} ${Y(11400)} m-7 0 l7 -7 l7 7 l-7 7z`,fill:'#ff6b5e'},m);
+  el('text',{x:xe+4,y:Y(11400)+26,'text-anchor':'middle','font-size':12,fill:'#ff8f85'},m,'highest · 11.4 PeV');
+})();
+(function(){const g=$('#discStrip');
+  const ev=[['2013','Bert & Ernie (2010–12 data)'],['2013','28 events'],['2014','5.7σ discovery'],['2024','tau ν at 5σ'],['2026','11.4 PeV + spectrum']];
+  ev.forEach(([y,t],i)=>{const x=80+i*185;
+    el('circle',{cx:x,cy:50,r:i===2?9:6,fill:i===2?'#5fd39a':'#101a24',stroke:i===2?'#5fd39a':'#9fd8ff','stroke-width':2},g);
+    el('text',{x:x,y:28,'text-anchor':'middle','font-size':14,'font-weight':600,fill:'#e6edf3'},g,y);
+    el('text',{x:x,y:80,'text-anchor':'middle','font-size':12.5,fill:'#a9b8c6'},g,t);});
+})();
+
+/* ---------- Fig 7: sky map ---------- */
+const sky=$('#sky'),ctx=sky.getContext('2d');
+const SRC=[
+  {id:'c-txs',name:'TXS 0506+056',l:195.4,b:-19.6,sig:3.5,col:'#ffb547'},
+  {id:'c-ngc',name:'NGC 1068',l:172.1,b:-51.9,sig:4.2,col:'#5fd39a'}];
+const W=1000,H=520,CX=500,CY=260,RR=480/(2*Math.SQRT2);
+function moll(l,b){let lam=((l+180)%360+360)%360-180;lam=-lam*Math.PI/180;const phi=b*Math.PI/180;
+  let th=phi;for(let i=0;i<12;i++){const f=2*th+Math.sin(2*th)-Math.PI*Math.sin(phi);th-=f/(2+2*Math.cos(2*th));if(!isFinite(th))th=phi;}
+  if(Math.abs(phi)>=Math.PI/2-1e-9)th=Math.sign(phi)*Math.PI/2;
+  return [CX+RR*2*Math.SQRT2/Math.PI*lam*Math.cos(th),CY-RR*Math.SQRT2*Math.sin(th)];}
+function sigCol(s){return s>=5?'#5fd39a':s>=4?'#ffb547':'#ff8f85';}
+const bgDots=(()=>{const r=rng(42),a=[];for(let i=0;i<260;i++){const l=r()*360,b=Math.asin(2*r()-1)*180/Math.PI;a.push(moll(l,b));}return a;})();
+let selected=null;
+function drawSky(){
+  const sig=$('#sigToggle').checked;
+  ctx.clearRect(0,0,W,H);
+  // outline
+  ctx.save();ctx.beginPath();ctx.ellipse(CX,CY,RR*2*Math.SQRT2,RR*Math.SQRT2,0,0,2*Math.PI);
+  const gr=ctx.createRadialGradient(CX,CY,20,CX,CY,480);gr.addColorStop(0,'#0f2233');gr.addColorStop(1,'#08121b');
+  ctx.fillStyle=gr;ctx.fill();ctx.strokeStyle='#2a3d50';ctx.stroke();ctx.clip();
+  // graticule
+  ctx.strokeStyle='#1e2c3a';ctx.lineWidth=1;
+  for(let b=-60;b<=60;b+=30){ctx.beginPath();for(let l=-180;l<=180;l+=5){const[p,q]=moll(l,b);l===-180?ctx.moveTo(p,q):ctx.lineTo(p,q);}ctx.stroke();}
+  for(let l=-150;l<=180;l+=30){ctx.beginPath();for(let b=-90;b<=90;b+=3){const[p,q]=moll(l,b);b===-90?ctx.moveTo(p,q):ctx.lineTo(p,q);}ctx.stroke();}
+  // galactic plane band
+  const band=ctx.createLinearGradient(0,CY-40,0,CY+40);
+  const gc=sig?'95,211,154':'201,163,255';
+  band.addColorStop(0,`rgba(${gc},0)`);band.addColorStop(.5,`rgba(${gc},${selected==='c-gal'?.55:.35})`);band.addColorStop(1,`rgba(${gc},0)`);
+  ctx.fillStyle=band;ctx.beginPath();
+  for(let l=-180;l<=180;l+=4){const[p,q]=moll(l,9);l===-180?ctx.moveTo(p,q):ctx.lineTo(p,q);}
+  for(let l=180;l>=-180;l-=4){const[p,q]=moll(l,-9);ctx.lineTo(p,q);}ctx.fill();
+  // dots
+  ctx.fillStyle='rgba(159,216,255,.28)';bgDots.forEach(([x,y])=>{ctx.beginPath();ctx.arc(x,y,1.7,0,7);ctx.fill();});
+  ctx.restore();
+  // labels
+  ctx.font='12px Inter,system-ui,sans-serif';ctx.fillStyle='#a9b8c6';ctx.textAlign='center';
+  ctx.fillText('Galactic plane'+(sig?' · 5.7σ':''),CX,CY-16);
+  ctx.fillStyle='#6f8293';ctx.font='11px JetBrains Mono,monospace';
+  ctx.fillText('l = 0° (Galactic centre)',CX,CY+30);ctx.fillText('l = 180°',CX-RR*2*Math.SQRT2+50,CY+30);
+  // sources
+  SRC.forEach(s=>{const[x,y]=moll(s.l,s.b);const c=sig?sigCol(s.sig):s.col;
+    if(selected===s.id){ctx.strokeStyle=c;ctx.globalAlpha=.4;ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,20,0,7);ctx.stroke();ctx.globalAlpha=1;}
+    ctx.fillStyle=c;ctx.beginPath();ctx.arc(x,y,8,0,7);ctx.fill();ctx.strokeStyle='#070b10';ctx.lineWidth=2;ctx.stroke();
+    ctx.fillStyle='#e6edf3';ctx.font='600 13px Inter,system-ui,sans-serif';ctx.textAlign='left';
+    {const t=s.name+(sig?'  '+s.sig+'σ':'');const w=ctx.measureText(t).width;if(x+14+w>W-8){ctx.textAlign='right';ctx.fillText(t,x-14,y+4);ctx.textAlign='left';}else ctx.fillText(t,x+14,y+4);}});
+  if(sig){ctx.textAlign='left';ctx.font='12px Inter,system-ui,sans-serif';
+    [['≥5σ discovery','#5fd39a'],['4–5σ evidence','#ffb547'],['<4σ','#ff8f85']].forEach(([t,c],i)=>{
+      ctx.fillStyle=c;ctx.fillRect(20,20+i*20,12,12);ctx.fillStyle='#a9b8c6';ctx.fillText(t,38,31+i*20);});}
+  ctx.textAlign='right';ctx.fillStyle='#6f8293';ctx.font='11px Inter,system-ui,sans-serif';
+  ctx.fillText('faint dots: illustrative, not real event positions',W-16,H-12);
+}
+function pick(ev){const r=sky.getBoundingClientRect(),x=(ev.clientX-r.left)*W/r.width,y=(ev.clientY-r.top)*H/r.height;
+  for(const s of SRC){const[p,q]=moll(s.l,s.b);if(Math.hypot(x-p,y-q)<Math.max(18,22*sky.width/sky.getBoundingClientRect().width))return s.id;}
+  const inside=((x-CX)/(RR*2*Math.SQRT2))**2+((y-CY)/(RR*Math.SQRT2))**2<=1;
+  if(inside&&Math.abs(y-CY)<26)return 'c-gal';return null;}
+sky.addEventListener('mousemove',e=>sky.style.cursor=pick(e)?'pointer':'default');
+sky.addEventListener('click',e=>{const id=pick(e);selected=id;drawSky();
+  $$('.card').forEach(c=>c.classList.toggle('hl',c.id===id));
+  if(id)document.getElementById(id).scrollIntoView({behavior:'smooth',block:'nearest'});});
+$('#sigToggle').addEventListener('change',drawSky);
+drawSky();
+
+/* ---------- Fig 7b: significance bars ---------- */
+(function(){const s=$('#sigBars');const data=[['Diffuse astrophysical flux (2014)',5.7],['Milky Way (2026)',5.7],['Astrophysical tau ν (2024)',5],['NGC 1068 (2022)',4.2],['TXS 0506+056 archival flare',3.5]];
+  const x0=270,sc=95;
+  for(let k=0;k<=6;k++){el('line',{x1:x0+k*sc,y1:20,x2:x0+k*sc,y2:250,stroke:'#1e2c3a'},s);el('text',{x:x0+k*sc,y:270,'text-anchor':'middle','font-size':11,fill:'#6f8293',class:'mono'},s,k+'σ');}
+  data.forEach(([n,v],i)=>{const y=30+i*44;
+    el('text',{x:x0-12,y:y+17,'text-anchor':'end','font-size':13,fill:'#e6edf3'},s,n);
+    el('rect',{x:x0,y:y,width:v*sc,height:24,rx:4,fill:sigCol(v),'fill-opacity':.85},s);
+    el('text',{x:x0+v*sc+8,y:y+17,'font-size':13,'font-weight':600,fill:sigCol(v)},s,v+'σ');});
+  el('line',{x1:x0+5*sc,y1:14,x2:x0+5*sc,y2:256,stroke:'#e6edf3','stroke-dasharray':'6 4','stroke-width':1.5},s);
+  el('text',{x:x0+5*sc,y:12,'text-anchor':'middle','font-size':11.5,fill:'#e6edf3'},s,'5σ discovery threshold');
+})();
+
+/* ---------- Fig 8: world map ---------- */
+(function(){const s=$('#worldMap'),W=860,H=430,ox=20,oy=20;
+  const P=(lon,lat)=>[ox+(lon+180)/360*W,oy+(90-lat)/180*H];
+  el('rect',{x:ox,y:oy,width:W,height:H,rx:6,fill:'#08121b',stroke:'#1e2c3a'},s);
+  for(let lat=-60;lat<=60;lat+=30){const[a,b]=P(-180,lat);el('line',{x1:a,y1:b,x2:ox+W,y2:b,stroke:'#132232'},s);}
+  for(let lon=-150;lon<=150;lon+=30){const[a]=P(lon,0);el('line',{x1:a,y1:oy,x2:a,y2:oy+H,stroke:'#132232'},s);}
+  const land=[
+   [[-168,66],[-140,70],[-95,72],[-80,63],[-60,55],[-55,48],[-70,43],[-81,25],[-97,26],[-105,20],[-87,15],[-78,8],[-85,10],[-105,22],[-117,32],[-125,42],[-124,50],[-140,60],[-165,60]],
+   [[-80,10],[-60,8],[-35,-6],[-40,-22],[-58,-38],[-68,-55],[-75,-45],[-71,-18],[-81,-5]],
+   [[-10,36],[-9,43],[-2,49],[5,54],[10,58],[25,70],[60,70],[100,76],[140,72],[180,68],[160,60],[142,52],[130,42],[122,30],[120,22],[108,12],[100,2],[95,15],[80,8],[72,20],[57,25],[48,30],[35,36],[28,41],[15,38],[3,43]],
+   [[-17,15],[-10,5],[8,4],[10,-5],[13,-17],[18,-34],[28,-33],[40,-16],[50,12],[43,12],[33,31],[10,37],[-6,36]],
+   [[114,-22],[130,-12],[142,-11],[153,-26],[147,-38],[135,-35],[115,-34]],
+   [[-180,-72],[-120,-74],[-60,-64],[0,-70],[60,-67],[120,-66],[180,-72],[180,-90],[-180,-90]]];
+  land.forEach(poly=>el('path',{d:'M'+poly.map(p=>P(...p).map(v=>v.toFixed(1)).join(' ')).join('L')+'Z',fill:'#18293a',stroke:'#2a3d50'},s));
+  const sites=[['IceCube / IceCube-Gen2',0,-88,true,'South Pole'],['KM3NeT',11,39,false,'Mediterranean'],['P-ONE',-127,48.5,false,'off Vancouver Island'],['TRIDENT',115,17,false,'South China Sea'],['Baikal-GVD',104.4,51.8,false,'Lake Baikal']];
+  const off={'KM3NeT':[-14,-14,'end'],'P-ONE':[0,-16,'middle'],'TRIDENT':[14,18,'start'],'Baikal-GVD':[14,-12,'start'],'IceCube / IceCube-Gen2':[0,-30,'middle']};
+  sites.forEach(([n,lon,lat,hl,sub])=>{const[x,y]=P(lon,lat);const c=hl?'#ffb547':'#4aa8ff';
+    if(hl)el('circle',{cx:x,cy:y,r:16,fill:'none',stroke:c,'stroke-opacity':.5},s);
+    el('circle',{cx:x,cy:y,r:hl?8:6,fill:c,stroke:'#070b10','stroke-width':2},s);
+    const[dx,dy,an]=off[n];
+    el('text',{x:x+dx,y:y+dy,'text-anchor':an,'font-size':hl?14:12.5,'font-weight':600,fill:hl?'#ffc979':'#e6edf3'},s,n);
+    el('text',{x:x+dx,y:y+dy+14,'text-anchor':an,'font-size':11,fill:'#a9b8c6'},s,sub);});
+})();
+const h=location.hash.slice(1);show(/^t[1-8]$/.test(h)?h:(h.startsWith('src-')?'t8':'t1'),false);
+if(h.startsWith('src-')){const t=document.getElementById(h);t&&t.scrollIntoView();}
+})();
+</script>
+</body>
+</html>
