@@ -1,6 +1,6 @@
 # 2026 Nobel Prize in Physics: research dossier (Rex Research)
 
-Audience: MIT PhDs without particle/astro background. Every number below is tagged with its source. **[SB]** = Nobel Committee Scientific Background (6 Oct 2026), the primary anchor. Tags: **FACT** (stated in a primary source), **DERIVED** (my arithmetic from sourced inputs; formula shown), **SPEC** (open question or interpretation; the committee itself hedges it). Local copies: `src/adv.pdf`, `src/adv.txt`, `src/pop.pdf`.
+Audience: PhD-level readers without particle/astro background. Every number below is tagged with its source. **[SB]** = Nobel Committee Scientific Background (6 Oct 2026), the primary anchor. Tags: **FACT** (stated in a primary source), **DERIVED** (my arithmetic from sourced inputs; formula shown), **SPEC** (open question or interpretation; the committee itself hedges it). Local copies: `src/adv.pdf`, `src/adv.txt`, `src/pop.pdf`.
 
 ## 0. Primary sources
 - [SB] Scientific Background: https://www.nobelprize.org/uploads/2026/10/advanced-physicsprize2026.pdf (mirror: https://www.kva.se/app/uploads/2026/10/nobel-physics-2026-scientific-background_34f71vieby.pdf)
